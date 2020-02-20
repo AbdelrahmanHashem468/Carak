@@ -8,7 +8,6 @@ class UserController extends Controller
 {
     public function register(Request $request)
     {
-        $fetchedData=$request->all();
         $this->validate($request, [
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users',
@@ -35,14 +34,21 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ];
-        if (auth()->attempt($credentials)) {
-            $token = auth()->user()->createToken('TutsForWeb')->accessToken;
-            return response()->json(['token' => $token], 200);
-        } else {
-            return response()->json(['error' => 'UnAuthorised'], 401);
-        }
+
+        if (auth()->attempt($credentials)) 
+            {
+                $token = auth()->user()->createToken('TutsForWeb')->accessToken;
+                return response()->json(['token' => $token], 200);
+            } 
+        else
+            {
+                return response()->json(['error' => 'UnAuthorised'], 401);
+            }
+    }
 
 
-        
+    public function test()
+    {
+        return response()->json("testtesttesttest");
     }
 }
