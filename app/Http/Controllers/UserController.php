@@ -35,6 +35,7 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ];
+        
         if (auth()->attempt($credentials)) {
             $token = auth()->user()->createToken('TutsForWeb')->accessToken;
             return response()->json(['token' => $token], 200);
