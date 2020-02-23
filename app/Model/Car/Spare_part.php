@@ -7,4 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Spare_part extends Model
 {
     protected $guarded = [];
+    const UPDATED_AT = null;
+
 }

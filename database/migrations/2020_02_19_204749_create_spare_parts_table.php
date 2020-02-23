@@ -16,7 +16,7 @@ class CreateSparePartsTable extends Migration
         Schema::create('spare_parts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('title');
-            $table->string('description');
+            $table->text('description');
             $table->string('price');
             $table->string('address');
             $table->string('photo');

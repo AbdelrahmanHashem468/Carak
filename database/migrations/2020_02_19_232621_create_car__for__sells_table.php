@@ -15,7 +15,7 @@ class CreateCarForSellsTable extends Migration
     {
         Schema::create('car_for_sells', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('description');
+            $table->text('description');
             $table->string('price');
             $table->string('address');
             $table->integer('car_status');
