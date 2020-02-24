@@ -6,6 +6,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use App\Model\Car\Spare_part;
+
 
 class User extends Authenticatable
 {
@@ -48,5 +50,11 @@ class User extends Authenticatable
         $users = User::getAllUsers();
         if(sizeof($users)>0)
             return $users[rand(0,sizeof($users)-1)]['id'];
+    }
+
+
+    public function spare_part()
+    {
+        return $this->hasMany(Spare_part::class);
     }
 }

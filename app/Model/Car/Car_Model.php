@@ -2,6 +2,8 @@
 
 namespace App\Model\Car;
 use Illuminate\Database\Eloquent\Model;
+use App\Model\Car\Car;
+use App\Model\Car\Spare_part;
 
 class Car_Model extends Model
 {
@@ -26,10 +28,14 @@ class Car_Model extends Model
             return $array ;
         }
     }
-/*
-    public function Car()
+
+    public function car()
     {
-        return $this->belongsTo('Car');
+        return $this->belongsTo(Car::class);
     }
-*/
+
+    public function spare_part()
+    {
+        return $this->hasMany(Spare_part::class,'car_model_id');
+    }
 }

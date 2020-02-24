@@ -23,7 +23,7 @@ class UserController extends Controller
         ]);
 
         $token = $user->createToken('TutsForWeb')->accessToken;
-        
+
         return response()->json(['token' => $token], 200);
     }
 
@@ -46,9 +46,4 @@ class UserController extends Controller
             }
     }
 
-
-    public function test()
-    {
-        return response()->json("testtesttesttest");
-    }
 }
