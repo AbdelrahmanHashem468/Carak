@@ -18,6 +18,7 @@ class CreateMaintenanceCentersTable extends Migration
             $table->string('name');
             $table->string('location');
             $table->integer('status');
+            // 0 => deleted   1 => pending   2 => accepted
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('maintenance_type_id');

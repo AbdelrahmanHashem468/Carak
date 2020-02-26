@@ -5,8 +5,10 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Http\Request;
 use Laravel\Passport\HasApiTokens;
 use App\Model\Car\Spare_part;
+use App\Model\Car\Car_For_Sell;
 
 
 class User extends Authenticatable
@@ -53,8 +55,26 @@ class User extends Authenticatable
     }
 
 
+    public static function fileUpload(Request $request) 
+    {
+
+        if ($request->hasFile('photo')) {
+            $image = $request->file('photo');
+            $name = time().'.'.$image->getClientOriginalExtension();
+            $destinationPath = public_path('/images');
+            $image->move($destinationPath, $name);
+            return $name;
+        }
+    }
+
     public function spare_part()
     {
         return $this->hasMany(Spare_part::class);
+    }
+
+    
+    public function car_for_sell()
+    {
+        return $this->hasMany(Car_For_Sell::class);
     }
 }

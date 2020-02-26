@@ -21,6 +21,7 @@ class CreateSparePartsTable extends Migration
             $table->string('address');
             $table->string('photo');
             $table->integer('status');
+            // 0 => deleted   1 => pending   2 => accepted
             $table->unsignedBigInteger('car_id');
             $table->foreign('car_id')->references('id')->on('cars');
             $table->unsignedBigInteger('car_model_id');

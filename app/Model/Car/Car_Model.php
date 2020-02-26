@@ -4,6 +4,7 @@ namespace App\Model\Car;
 use Illuminate\Database\Eloquent\Model;
 use App\Model\Car\Car;
 use App\Model\Car\Spare_part;
+use App\Model\Car\Car_For_Sell;
 
 class Car_Model extends Model
 {
@@ -37,5 +38,10 @@ class Car_Model extends Model
     public function spare_part()
     {
         return $this->hasMany(Spare_part::class,'car_model_id');
+    }
+
+    public function car_for_sell()
+    {
+        return $this->hasMany(Car_For_Sell::class);
     }
 }

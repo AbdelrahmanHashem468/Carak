@@ -12,6 +12,7 @@ $factory->define(Car_For_Sell::class, function (Faker $faker) {
     $rand1=rand(0,1);
     $rand2=rand(0,2);
     return [
+        'title' => $faker->name,
         'description' => $faker->text,
         'price' => $faker->randomNumber(5),
         'address' => $faker->address,

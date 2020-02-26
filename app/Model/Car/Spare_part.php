@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Model\Car;
-use App\User;
-use App\Model\Car\Car;
-use App\Model\Car\Car_Model;
+
 use Illuminate\Database\Eloquent\Model;
+use App\Model\Car\Car_Model;
+use App\Model\Car\Car;
+use App\User;
+
 
 class Spare_part extends Model
 {
@@ -14,10 +16,29 @@ class Spare_part extends Model
 
     public static function getAllSparePart()
     {
-        return Spare_part::orderBy('created_at','desc')->get();
+        $spareParts = Spare_part::where('status','2')
+        ->orderBy('created_at','desc')->get();
+        
+        for($i=0 ;$i<sizeof($spareParts); $i++)
+        {
+            /*
+            $spareParts[$i]['user_name']=$spareParts[$i]->user->name;
+            $spareParts[$i]['car_name']=$spareParts[$i]->car->name;
+            $spareParts[$i]['car_model_name']=$spareParts[$i]->car_model->name;
+            */
+            $userId = $spareParts[$i]['user_id'];
+            $spareParts[$i]['user_name']= User::find($userId)->name;
+            
+            $carId = $spareParts[$i]['car_id'];
+            $spareParts[$i]['car_name']= Car::find($carId)->name;
+            
+            $carModelId = $spareParts[$i]['car_model_id'];
+            $spareParts[$i]['car_model_name']= Car_Model::find($carModelId)->name;
+        }
+        return $spareParts;
     }
 
-    public function user()
+public function user()
     {
         return $this->belongsTo(User::class);
     }

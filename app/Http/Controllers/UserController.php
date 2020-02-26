@@ -11,6 +11,7 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users',
+            'photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg',
             'phonenumber'=>'required',
             'password' => 'required|min:6',
         ]);
@@ -18,6 +19,7 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
+            'photo' => User::fileUpload($request),
             'phonenumber'=>$request->phonenumber,
             'password' => bcrypt($request->password)
         ]);

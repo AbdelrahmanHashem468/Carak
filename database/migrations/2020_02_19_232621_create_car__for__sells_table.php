@@ -15,11 +15,14 @@ class CreateCarForSellsTable extends Migration
     {
         Schema::create('car_for_sells', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('title');
             $table->text('description');
             $table->string('price');
             $table->string('address');
             $table->integer('car_status');
+            // 0 => used   1 => new
             $table->integer('status');
+            // 0 => deleted   1 => pending   2 => accepted
             $table->string('year');
             $table->string('photo');
             $table->unsignedBigInteger('car_id');
