@@ -22,19 +22,13 @@ class Car_For_Sell extends Model
         
         for($i=0 ;$i<sizeof($cars); $i++)
         {
-            /*
+            
             $cars[$i]['user_name']=$cars[$i]->user->name;
             $cars[$i]['car_name']=$cars[$i]->car->name;
             $cars[$i]['car_model_name']=$cars[$i]->car_model->name;
-            */
-            $userId = $cars[$i]['user_id'];
-            $cars[$i]['user_name']= User::find($userId)->name;
-            
-            $carId = $cars[$i]['car_id'];
-            $cars[$i]['car_name']= Car::find($carId)->name;
-            
-            $carModelId = $cars[$i]['car_model_id'];
-            $cars[$i]['car_model_name']= Car_Model::find($carModelId)->name;
+            unset($cars[$i]['user']);
+            unset($cars[$i]['car']);
+            unset($cars[$i]['car_model']);
         }
         return $cars;
     }

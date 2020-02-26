@@ -29,8 +29,8 @@ class Car extends Model
         for($i=0 ;$i<sizeof($cars); $i++)
         {
             $car_model[$i]=array(
-                'car' => $cars[$i],
-                'car_model' => $cars[$i]->car_model
+                $cars[$i]->name => $cars[$i]->car_model,
+                'car_id' => $cars[$i]->id,
             );
         }
         return $car_model;
