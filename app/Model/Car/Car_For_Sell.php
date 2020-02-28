@@ -18,7 +18,7 @@ class Car_For_Sell extends Model
     public static function getAllCar()
     {
         $cars = Car_For_Sell::where('status','2')
-        ->orderBy('created_at','desc')->get();
+        ->orderBy('created_at','desc')->paginate(50);
         
         for($i=0 ;$i<sizeof($cars); $i++)
         {

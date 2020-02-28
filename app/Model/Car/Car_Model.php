@@ -5,6 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Model\Car\Car;
 use App\Model\Car\Spare_part;
 use App\Model\Car\Car_For_Sell;
+use App\Model\Car\Car_Price;
 
 class Car_Model extends Model
 {
@@ -43,5 +44,10 @@ class Car_Model extends Model
     public function car_for_sell()
     {
         return $this->hasMany(Car_For_Sell::class);
+    }
+
+    public function car_price()
+    {
+        return $this->belongsTo(Car_Price::class);
     }
 }

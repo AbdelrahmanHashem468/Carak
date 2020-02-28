@@ -12,6 +12,6 @@ class Cars_For_SellTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Car_For_Sell::class, 30)->create();
+        factory(Car_For_Sell::class, 100)->create();
     }
 }
