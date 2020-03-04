@@ -5,14 +5,15 @@ namespace App\Http\Controllers\Car;
 use App\Http\Controllers\Controller;
 use App\Model\Car\Car_For_Sell;
 use Illuminate\Http\Request;
+use App\Model\Car\Car_Price;
 use App\Model\Car\Car;
 use App\User;
 use Auth;
 
 class CarController extends Controller
 {
-   
-    public function addCar(Request $request)
+    
+    public function addCarForSell(Request $request)
     {
         $fetchedData = $request->all();
         $this->validate($request, [
@@ -57,6 +58,37 @@ class CarController extends Controller
     {
         $carForSell = Car_For_Sell::getAllCar();
         return response()->json($carForSell ,200);
+    }
+
+    public function addCarPrice(Request $request)
+    {
+        $fetchedData = $request->all();
+        $this->validate($request, [
+            
+            'price' => 'required',
+            'category' => 'required',
+            'car_id' => 'required',
+            'car_model_id' => 'required',
+        ]);
+
+        $isCreated=Car_Price::create([
+            'price' => $fetchedData['price'],
+            'category' => $fetchedData['category'],
+            'car_id' => $fetchedData['car_id'],
+            'car_model_id' => $fetchedData['car_model_id'],
+        ])->wasRecentlyCreated;
+
+        if($isCreated)
+            return response()->json(["massge" => "Store Successfully"],200);
+
+        else
+            return response()->json(["massge" =>" Failed to Store"],400);
+    }
+
+    public function showCarPrice()
+    {
+        $carPrice = Car_Price::getAllCarPrice();
+        return response()->json($carPrice ,200);
     }
 
 

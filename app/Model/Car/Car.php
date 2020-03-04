@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Model\Car;
-use App\Model\Car\Car_Model;
-use App\Model\Car\spare_part;
-use App\Model\Car\Car_For_Sell;
+
 use Illuminate\Database\Eloquent\Model;
+use App\Model\Car\Car_For_Sell;
+use App\Model\Car\spare_part;
+use App\Model\Car\Car_Model;
+use App\Model\Car\Car_Price;
 
 class Car extends Model
 {
@@ -24,16 +26,12 @@ class Car extends Model
 
     public static function getCarModel()
     {
-        $cars = Car::getAllCars();
-        $car_model=[];
+        $cars = Car::paginate(50);
+        
         for($i=0 ;$i<sizeof($cars); $i++)
-        {
-            $car_model[$i]=array(
-                $cars[$i]->name => $cars[$i]->car_model,
-                'car_id' => $cars[$i]->id,
-            );
-        }
-        return $car_model;
+            $cars[$i]['car_models'] = $cars[$i]->car_model;
+        
+        return $cars;
     }
 
     public function car_model()
@@ -50,5 +48,10 @@ class Car extends Model
     public function car_for_sell()
     {
         return $this->hasMany(Car_For_Sell::class);
+    }
+
+    public function car_price()
+    {
+        return $this->hasMany(Car_Price::class);
     }
 }

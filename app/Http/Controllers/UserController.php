@@ -26,7 +26,10 @@ class UserController extends Controller
 
         $token = $user->createToken('TutsForWeb')->accessToken;
 
-        return response()->json(['token' => $token], 200);
+        return response()->json([
+            'token' => $token,
+            'user' => $user
+        ], 200);
     }
 
 
@@ -40,7 +43,11 @@ class UserController extends Controller
         if (auth()->attempt($credentials)) 
             {
                 $token = auth()->user()->createToken('TutsForWeb')->accessToken;
-                return response()->json(['token' => $token], 200);
+                $user = auth()->user();     
+                return response()->json([
+                    'token' => $token,
+                    'user' => $user,
+                ], 200);
             } 
         else
             {

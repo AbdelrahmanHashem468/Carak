@@ -12,6 +12,6 @@ class Spare_partTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Spare_part::class, 30)->create();
+        factory(Spare_part::class, 100)->create();
     }
 }
