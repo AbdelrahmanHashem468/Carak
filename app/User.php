@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Laravel\Passport\HasApiTokens;
 use App\Model\Car\Spare_part;
 use App\Model\Car\Car_For_Sell;
+use JD\Cloudder\Facades\Cloudder;
 
 
 class User extends Authenticatable
@@ -54,7 +55,22 @@ class User extends Authenticatable
             return $users[rand(0,sizeof($users)-1)]['id'];
     }
 
+    public static function fileUpload(Request $request)
+    {
+        $request->validate([
+            'photo'=>'required|mimes:jpeg,bmp,jpg,png',
+        ]);
+        $image = $request->file('photo');
+        $name = $request->file('photo')->getClientOriginalName();
+        $image_name = $request->file('photo')->getRealPath();;
+        Cloudder::upload($image_name, null);
+        list($width, $height) = getimagesize($image_name);
+        $image_url= Cloudder::show(Cloudder::getPublicId(), ["width" => $width, "height"=>$height]);
+        $image->move(public_path("/images"), $name);
+        return $image_url;
+    }
 
+/*
     public static function fileUpload(Request $request) 
     {
 
@@ -66,13 +82,15 @@ class User extends Authenticatable
             return $name;
         }
     }
+*/
+
 
     public function spare_part()
     {
         return $this->hasMany(Spare_part::class);
     }
 
-    
+
     public function car_for_sell()
     {
         return $this->hasMany(Car_For_Sell::class);
