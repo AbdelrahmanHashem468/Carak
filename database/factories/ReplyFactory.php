@@ -10,7 +10,7 @@ use Faker\Generator as Faker;
 $factory->define(Reply::class, function (Faker $faker) {
     return [
         'text' => $faker->text,
-        'Post_id' => Post::getInstance(),
+        'post_id' => Post::getInstance(),
         'user_id' => User::getInstance(),
     ];
 });
