@@ -82,6 +82,7 @@
             <div class="content">
                 <div class="title m-b-md">
                     Laravel
+                    <?php echo csrf_token();?>
                 </div>
 
                 <div class="links">
