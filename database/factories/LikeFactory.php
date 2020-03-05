@@ -10,8 +10,8 @@ use Faker\Generator as Faker;
 $factory->define(Like::class, function (Faker $faker) {
     $instance = Reply::getInstance();
     return [
-        'Post_id' => $instance['post_id'],
-        'Reply_id' => $instance['id'],
+        'post_id' => $instance['post_id'],
+        'reply_id' => $instance['id'],
         'user_id' => User::getInstance(),
     ];
 });
