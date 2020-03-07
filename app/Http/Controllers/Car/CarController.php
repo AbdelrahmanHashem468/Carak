@@ -37,7 +37,7 @@ class CarController extends Controller
             'description' => $fetchedData['description'],
             'title' => $fetchedData['title'],
             'price' => $fetchedData['price'],
-            'photo' => User::fileUpload($request),
+            'photo' => $fetchedData['photo'],
             'address' => $fetchedData['address'],
             'year' => $fetchedData['year'],
             'car_status' => $car_status,

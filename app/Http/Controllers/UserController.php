@@ -19,7 +19,7 @@ class UserController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'photo' => User::fileUpload($request),
+            'photo' => $request->photo,
             'phonenumber'=>$request->phonenumber,
             'password' => bcrypt($request->password)
         ]);
@@ -53,6 +53,13 @@ class UserController extends Controller
             {
                 return response()->json(['error' => 'UnAuthorised'], 401);
             }
+    }
+
+
+    public function uploadimge(Request $request)
+    {
+        
+        return User::fileUpload($request);
     }
 
 }

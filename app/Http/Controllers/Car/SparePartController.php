@@ -29,7 +29,7 @@ class SparePartController extends Controller
             'description' => $fetchedData['description'],
             'title' => $fetchedData['title'],
             'price' => $fetchedData['price'],
-            'photo' => User::fileUpload($request),
+            'photo' => $fetchedData['photo'],
             'address' => $fetchedData['address'],
             'status' => 1, //pending
             'car_id' => $fetchedData['car_id'],
