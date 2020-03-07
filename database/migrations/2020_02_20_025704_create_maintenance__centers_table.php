@@ -16,7 +16,8 @@ class CreateMaintenanceCentersTable extends Migration
         Schema::create('maintenance_centers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('location');
+            $table->string('x_location');
+            $table->string('y_location');
             $table->integer('status');
             // 0 => deleted   1 => pending   2 => accepted
             $table->unsignedBigInteger('user_id');

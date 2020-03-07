@@ -11,7 +11,8 @@ $factory->define(Maintenance_Center::class, function (Faker $faker) {
     $rand = rand(0,2);
     return [
         'name' => $faker->name,
-        'location' => $faker->word,
+        'x_location' => $faker->word,
+        'y_location' => $faker->word,
         'status' => $rand,
         'user_id' => User::getInstance(),
         'maintenance_type_id' => Maintenance_Type::getInstance(),
