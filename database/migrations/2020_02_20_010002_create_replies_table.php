@@ -20,6 +20,7 @@ class CreateRepliesTable extends Migration
             $table->foreign('post_id')->references('id')->on('posts');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->engine = "InnoDB";
             $table->timestamps();
         });
     }
