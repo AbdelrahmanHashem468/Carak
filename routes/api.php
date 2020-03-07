@@ -12,7 +12,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
  **/
 Route::post('/register','UserController@register');
 Route::post('/login','UserController@login');
-Route::post('/uploadimge','UserController@uploadimge');
+Route::post('/uploadimage','UserController@uploadimge');
 
 
 
