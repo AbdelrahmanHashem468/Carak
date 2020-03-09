@@ -4,6 +4,7 @@ namespace App\Model\Car;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Model\Car\Car_Model;
+use App\Model\Service\Photo;
 use App\Model\Car\Car;
 use App\User;
 
@@ -25,6 +26,10 @@ class Spare_part extends Model
             $spareParts[$i]['user_name']=$spareParts[$i]->user->name;
             $spareParts[$i]['car_name']=$spareParts[$i]->car->name;
             $spareParts[$i]['car_model_name']=$spareParts[$i]->car_model->name;
+            $spareParts[$i]['photos'] =
+                Photo::where('type',1)
+                ->where('object_id',$spareParts[$i]['id'])
+                ->get();
             unset($spareParts[$i]['user']);
             unset($spareParts[$i]['car']);
             unset($spareParts[$i]['car_model']);

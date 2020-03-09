@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Car;
 use App\Http\Controllers\Controller;
 use App\Model\Car\Spare_part;
 use Illuminate\Http\Request;
+use App\Model\Service\Photo;
 use App\Model\Car\Car;
 use App\User;
 use Auth;
+use DB;
 
 
 class SparePartController extends Controller
@@ -18,18 +20,19 @@ class SparePartController extends Controller
         $this->validate($request, [
             'title' => 'required|min:3',
             'description' => 'required|min:3',
-            'photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'photo'=>'required',
             'price' => 'required',
             'address' => 'required',
             'car_id' => 'required',
             'car_model_id' => 'required',
         ]);
 
-        $isCreated=Spare_part::create([
+        $photos = json_decode($fetchedData['photo'],true);
+        $spraeCreated=Spare_part::create([
             'description' => $fetchedData['description'],
             'title' => $fetchedData['title'],
             'price' => $fetchedData['price'],
-            'photo' => $fetchedData['photo'],
+            'photo' => $photos[0],
             'address' => $fetchedData['address'],
             'status' => 1, //pending
             'car_id' => $fetchedData['car_id'],
@@ -37,7 +40,20 @@ class SparePartController extends Controller
             'user_id' => Auth::User()->id
         ])->wasRecentlyCreated;
 
-        if($isCreated)
+        if($spraeCreated)
+        {
+            $spareId = DB::table('spare_parts')->latest('id')->first()->id;
+            for($i=1;$i<sizeof($photos);$i++)
+            {
+                $photoCreated = Photo::create([
+                    'object_id'   => $spareId,
+                    'type'         => 1,
+                    'name'         => $photos[$i],
+                ])->wasRecentlyCreated;
+            }
+        }
+
+        if($spraeCreated && $photoCreated)
             return response()->json(["massge" => "Store Successfully"],200);
 
         else

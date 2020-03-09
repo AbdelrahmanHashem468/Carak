@@ -4,6 +4,7 @@ namespace App\Model\Car;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Model\Car\Car_Model;
+use App\Model\Service\Photo;
 use App\Model\Car\Car;
 use App\User;
 
@@ -22,10 +23,15 @@ class Car_For_Sell extends Model
         
         for($i=0 ;$i<sizeof($cars); $i++)
         {
-            
+            if ($cars[$i]['car_status']==0)
+                $cars[$i]['car_status']= 'used';
+            if ($cars[$i]['car_status']==1)
+                $cars[$i]['car_status']= 'new';
             $cars[$i]['user_name']=$cars[$i]->user->name;
             $cars[$i]['car_name']=$cars[$i]->car->name;
             $cars[$i]['car_model_name']=$cars[$i]->car_model->name;
+            $cars[$i]['photos'] =
+                Photo::where('type',2)->where('object_id',$cars[$i]['id'])->get();
             unset($cars[$i]['user']);
             unset($cars[$i]['car']);
             unset($cars[$i]['car_model']);
