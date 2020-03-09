@@ -5,11 +5,12 @@ namespace App\Http\Controllers\Car;
 use App\Http\Controllers\Controller;
 use App\Model\Car\Car_For_Sell;
 use Illuminate\Http\Request;
+use App\Model\Service\Photo;
 use App\Model\Car\Car_Price;
 use App\Model\Car\Car;
 use App\User;
 use Auth;
-
+use DB;
 class CarController extends Controller
 {
     
@@ -19,7 +20,7 @@ class CarController extends Controller
         $this->validate($request, [
             'title' => 'required|min:3',
             'description' => 'required|min:3',
-            'photo'=>'required|image|mimes:jpeg,png,jpg,gif,svg',
+            'photo'=>'required',
             'price' => 'required',
             'address' => 'required',
             'year' => 'required|digits:4',
@@ -28,28 +29,41 @@ class CarController extends Controller
             'car_model_id' => 'required',
         ]);
 
+        $photos = json_decode($fetchedData['photo'],true);
         if($fetchedData['car_status'] == 'used')
             $car_status = 0;
         if($fetchedData['car_status'] == 'new')
             $car_status = 1;
 
-        $isCreated=Car_For_Sell::create([
-            'description' => $fetchedData['description'],
-            'title' => $fetchedData['title'],
-            'price' => $fetchedData['price'],
-            'photo' => $fetchedData['photo'],
-            'address' => $fetchedData['address'],
-            'year' => $fetchedData['year'],
-            'car_status' => $car_status,
-            'status' => 1, //pending
-            'car_id' => $fetchedData['car_id'],
-            'car_model_id' => $fetchedData['car_model_id'],
-            'user_id' => Auth::User()->id
+        $carCreated=Car_For_Sell::create([
+            'description'   => $fetchedData['description'],
+            'title'         => $fetchedData['title'],
+            'price'         => $fetchedData['price'],
+            'photo'         => $photos[0],
+            'address'       => $fetchedData['address'],
+            'year'          => $fetchedData['year'],
+            'car_status'    => $car_status,
+            'status'        => 1, //pending
+            'car_id'        => $fetchedData['car_id'],
+            'car_model_id'  => $fetchedData['car_model_id'],
+            'user_id'       => Auth::User()->id
         ])->wasRecentlyCreated;
 
-        if($isCreated)
-            return response()->json(["massge" => "Store Successfully"],200);
+        if($carCreated)
+        {
+            $carId = DB::table('car_for_sells')->latest('id')->first()->id;
+            for($i=1;$i<sizeof($photos);$i++)
+            {
+                $photoCreated = Photo::create([
+                    'object_id'   => $carId,
+                    'type'         => 2,
+                    'name'         => $photos[$i],
+                ])->wasRecentlyCreated;
+            }
+        }
 
+        if($carCreated && $photoCreated)
+            return response()->json(["massge" => "Store Successfully"],200);
         else
             return response()->json(["massge" =>" Failed to Store"],400);
     }
@@ -101,7 +115,29 @@ class CarController extends Controller
 
     public function test()
     {
-        $car = Car::find(7);
-        return $car->car_model;
+        /*
+        
+        $fetchedData = $request->all();
+        
+        //$encodedJson = json_encode($jsonTest);
+/*
+        $photos = json_decode($fetchedData['photo'],true);
+        $array = [];
+        $bool = true;
+        foreach($photos as $photo)
+        {
+            if($bool)
+            {
+                $x=$photo;
+                $bool = false;
+                continue;
+            }
+                $array[]=$photo;
+            
+        }*/
+        //return var_dump($photos);*/
+        $ID = DB::table('car_for_sells')->latest('id')->first()->id;
+        return response()->json($ID ,200);
     }
+
 }

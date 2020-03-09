@@ -10,9 +10,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 /**
  * @var Authantication_Routes
  **/
-Route::post('/register','UserController@register');
-Route::post('/login','UserController@login');
-Route::post('/uploadimage','UserController@uploadimge');
+Route::post('/register'     ,'UserController@register'  );
+Route::post('/login'        ,'UserController@login'     );
+Route::post('/uploadimage'  ,'UserController@uploadimge');
 
 
 

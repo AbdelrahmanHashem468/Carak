@@ -17,6 +17,7 @@ class CreatePhotosTable extends Migration
             $table->bigIncrements('id');
             $table->integer('object_id');
             $table->integer('type');
+            // News = 0      Spare = 1    Car = 2   offer = 3
             $table->string('name');
             $table->timestamps();
         });
