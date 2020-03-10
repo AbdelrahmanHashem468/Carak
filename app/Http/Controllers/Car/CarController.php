@@ -30,10 +30,6 @@ class CarController extends Controller
         ]);
 
         $photos = json_decode($fetchedData['photo'],true);
-        if($fetchedData['car_status'] == 'used')
-            $car_status = 0;
-        if($fetchedData['car_status'] == 'new')
-            $car_status = 1;
 
         $carCreated=Car_For_Sell::create([
             'description'   => $fetchedData['description'],
@@ -42,7 +38,7 @@ class CarController extends Controller
             'photo'         => $photos[0],
             'address'       => $fetchedData['address'],
             'year'          => $fetchedData['year'],
-            'car_status'    => $car_status,
+            'car_status'    => $fetchedData['car_status'],
             'status'        => 1, //pending
             'car_id'        => $fetchedData['car_id'],
             'car_model_id'  => $fetchedData['car_model_id'],
