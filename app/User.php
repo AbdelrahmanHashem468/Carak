@@ -56,7 +56,7 @@ class User extends Authenticatable
         if(sizeof($users)>0)
             return $users[rand(0,sizeof($users)-1)]['id'];
     }
-/*
+
     public static function fileUpload(Request $request)
     {
         $request->validate([
@@ -71,8 +71,8 @@ class User extends Authenticatable
         $image->move(public_path("/images"), $name);
         return $image_url;
     }
-*/
 
+/*
     public static function fileUpload(Request $request) 
     {
 
@@ -84,7 +84,7 @@ class User extends Authenticatable
             return $name;
         }
     }
-
+*/
 
     public function spare_part()
     {
