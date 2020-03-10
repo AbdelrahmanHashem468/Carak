@@ -120,7 +120,6 @@ class CarController extends Controller
         $fetchedData = $request->all();
         
         //$encodedJson = json_encode($jsonTest);
-/*
         $photos = json_decode($fetchedData['photo'],true);
         $array = [];
         $bool = true;

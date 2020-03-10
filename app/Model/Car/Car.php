@@ -7,6 +7,7 @@ use App\Model\Car\Car_For_Sell;
 use App\Model\Car\spare_part;
 use App\Model\Car\Car_Model;
 use App\Model\Car\Car_Price;
+use App\Model\Group\Group;
 
 class Car extends Model
 {
@@ -53,5 +54,10 @@ class Car extends Model
     public function car_price()
     {
         return $this->hasMany(Car_Price::class);
+    }
+
+    public function group()
+    {
+        return $this->belongsTo(Group::class);
     }
 }

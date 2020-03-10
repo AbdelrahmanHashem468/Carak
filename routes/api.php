@@ -47,8 +47,13 @@ Route::get('/showCarPrice','Car\CarController@showCarPrice');
 
 
 
-
-
+/**
+ * @var Groups_Routes
+ **/
+Route::get('/showGroups','Group\GroupController@showGroups');
+Route::get('/showPosts/{id}','Group\GroupController@showPosts');
+Route::middleware('auth:api')
+->post('/addPost','Group\GroupController@addPost');
 
 
 

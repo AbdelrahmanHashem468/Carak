@@ -2,14 +2,16 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Http\Request;
 use Laravel\Passport\HasApiTokens;
-use App\Model\Car\Spare_part;
-use App\Model\Car\Car_For_Sell;
 use JD\Cloudder\Facades\Cloudder;
+use App\Model\Car\Car_For_Sell;
+use App\Model\Car\Spare_part;
+use Illuminate\Http\Request;
+use App\Model\Group\Post;
+
 
 
 class User extends Authenticatable
@@ -93,5 +95,10 @@ class User extends Authenticatable
     public function car_for_sell()
     {
         return $this->hasMany(Car_For_Sell::class);
+    }
+
+    public function post()
+    {
+        return $this->hasMany(Post::class);
     }
 }
