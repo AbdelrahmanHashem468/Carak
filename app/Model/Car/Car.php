@@ -27,11 +27,13 @@ class Car extends Model
 
     public static function getCarModel()
     {
-        $cars = Car::paginate(50);
+        $cars = Car::all();
         
         for($i=0 ;$i<sizeof($cars); $i++)
+        {
             $cars[$i]['car_models'] = $cars[$i]->car_model;
-        
+            unset($cars[$i]['car_model']);
+        }
         return $cars;
     }
 
