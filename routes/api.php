@@ -21,6 +21,7 @@ Route::post('/uploadimage'  ,'UserController@uploadimge');
  **/
 Route::get('/showCarModel','Car\CarController@showCarModel');
 
+
 /**
  * @var Car_For_Sell_Routes
  **/
@@ -45,19 +46,23 @@ Route::middleware('auth:api')
 Route::get('/showCarPrice','Car\CarController@showCarPrice');
 
 
-
-
 /**
  * @var Groups_Routes
  **/
 Route::get('/showGroups','Group\GroupController@showGroups');
+
 Route::get('/showPosts/{id}','Group\GroupController@showPosts');
 Route::middleware('auth:api')
 ->post('/addPost','Group\GroupController@addPost');
+
+Route::get('/showReplies/{id}','Group\GroupController@showReplies');
+Route::middleware('auth:api')
+->post('/addReply','Group\GroupController@addReply');
+
+Route::middleware('auth:api')
+->post('/addLike','Group\GroupController@addLike');
 
 
 
 
 Route::get('/test','Car\CarController@test');
-
-

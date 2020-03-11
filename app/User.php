@@ -10,9 +10,8 @@ use JD\Cloudder\Facades\Cloudder;
 use App\Model\Car\Car_For_Sell;
 use App\Model\Car\Spare_part;
 use Illuminate\Http\Request;
+use App\Model\Group\Reply;
 use App\Model\Group\Post;
-
-
 
 class User extends Authenticatable
 {
@@ -100,5 +99,10 @@ class User extends Authenticatable
     public function post()
     {
         return $this->hasMany(Post::class);
+    }
+
+    public function reply()
+    {
+        return $this->hasMany(Reply::class);
     }
 }

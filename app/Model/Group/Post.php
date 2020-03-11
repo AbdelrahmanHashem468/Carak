@@ -4,6 +4,7 @@ namespace App\Model\Group;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Model\Group\Group;
+use App\Model\Group\Reply;
 use App\User;
 
 class Post extends Model
@@ -37,6 +38,11 @@ class Post extends Model
     public function group()
     {
         return $this->belongsTo(Group::class);
+    }
+
+    public function reply()
+    {
+        return $this->hasMany(Reply::class);
     }
 
     public function user()
