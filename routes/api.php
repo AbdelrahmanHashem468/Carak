@@ -39,7 +39,7 @@ Route::get('/showSparePart','Car\SparePartController@showSparePart');
 
 
 /**
- * @var SpareParts_Routes
+ * @var CarPrice_Routes
  **/
 Route::middleware('auth:api')
 ->post('/addCarPrice','Car\CarController@addCarPrice');
@@ -61,6 +61,14 @@ Route::middleware('auth:api')
 
 Route::middleware('auth:api')
 ->post('/addLike','Group\GroupController@addLike');
+
+
+
+/**
+ * @var Groups_Routes
+ **/
+Route::middleware('auth:api')
+->post('/addM_Center','Maintenance\MaintenanceController@addM_Center');
 
 
 
