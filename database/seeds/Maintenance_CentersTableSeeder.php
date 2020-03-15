@@ -12,6 +12,6 @@ class Maintenance_CentersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(Maintenance_Center::class, 50)->create();
+        factory(Maintenance_Center::class, 150)->create();
     }
 }

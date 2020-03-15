@@ -23,7 +23,7 @@ class CreateMaintenanceCentersTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
             $table->unsignedBigInteger('maintenance_type_id');
-            $table->foreign('maintenance_type_id')->references('id')->on('users');
+            $table->foreign('maintenance_type_id')->references('id')->on('maintenance_types');
             $table->timestamps();
         });
     }

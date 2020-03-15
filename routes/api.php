@@ -65,10 +65,24 @@ Route::middleware('auth:api')
 
 
 /**
- * @var Groups_Routes
+ * @var Maintenance_Routes
  **/
 Route::middleware('auth:api')
 ->post('/addM_Center','Maintenance\MaintenanceController@addM_Center');
+
+Route::get('/showM_Types','Maintenance\MaintenanceController@showM_Types');
+
+Route::get('/showM_Centers/{id}','Maintenance\MaintenanceController@showM_Centers');
+
+
+
+
+
+
+
+
+
+
 
 
 
