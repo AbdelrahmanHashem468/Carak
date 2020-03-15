@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Model\Maintenance\Maintenance_Center;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use JD\Cloudder\Facades\Cloudder;
@@ -104,5 +105,10 @@ class User extends Authenticatable
     public function reply()
     {
         return $this->hasMany(Reply::class);
+    }
+
+    public function maintenance_center()
+    {
+        return $this->hasMany(Maintenance_Center::class);
     }
 }
