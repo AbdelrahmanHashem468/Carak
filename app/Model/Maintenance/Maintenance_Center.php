@@ -14,15 +14,16 @@ class Maintenance_Center extends Model
 
     public static function getALLM_CenterByM_TypeId($id)
     {
-        $m_Center = Maintenance_Type::find($id)->maintenance_center
+        $m_Centers = Maintenance_Type::find($id)->maintenance_center
         ->where('status',2);
-
-        /*for($i=0;$i<sizeof($m_Center);$i++)
+        
+        foreach($m_Centers as $m_Center)
         {
-            $m_Center[$i]['user_name'] = $m_Center[$i]->user->name;
-            unset($m_Center[$i]['user']);
-        }*/
-        return $m_Center;
+            $m_Center['user_name'] = $m_Center->user->name;
+            unset($m_Center['user']);
+        }
+        
+        return $m_Centers;
     }
 
     public function maintenance_type()
