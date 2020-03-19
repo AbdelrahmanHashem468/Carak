@@ -50,15 +50,12 @@ Route::get('/showCarPrice','Car\CarController@showCarPrice');
  * @var Groups_Routes
  **/
 Route::get('/showGroups','Group\GroupController@showGroups');
-
 Route::get('/showPosts/{id}','Group\GroupController@showPosts');
 Route::middleware('auth:api')
 ->post('/addPost','Group\GroupController@addPost');
-
 Route::get('/showReplies/{id}','Group\GroupController@showReplies');
 Route::middleware('auth:api')
 ->post('/addReply','Group\GroupController@addReply');
-
 Route::middleware('auth:api')
 ->post('/addLike','Group\GroupController@addLike');
 
@@ -67,21 +64,25 @@ Route::middleware('auth:api')
 /**
  * @var Maintenance_Routes
  **/
+Route::get('/showM_Types','Maintenance\MaintenanceController@showM_Types');
+Route::get('/showM_Centers/{id}','Maintenance\MaintenanceController@showM_Centers');
 Route::middleware('auth:api')
 ->post('/addM_Center','Maintenance\MaintenanceController@addM_Center');
 
-Route::get('/showM_Types','Maintenance\MaintenanceController@showM_Types');
-
-Route::get('/showM_Centers/{id}','Maintenance\MaintenanceController@showM_Centers');
 
 
 
-
-
-
-
-
-
+/**
+ * @var Service_Routes
+ **/
+Route::get('/showAdvertises','Service\ServiceController@showAdvertises');
+Route::get('/showSolarPrice','Service\ServiceController@showSolarPrice');
+Route::get('/showNews','Service\ServiceController@shownews');
+Route::get('/showOffers','Service\ServiceController@showOffers');
+Route::middleware('auth:api')
+->post('/addOffer','Service\ServiceController@addOffer');
+Route::middleware('auth:api')
+->post('/addReport','Service\ServiceController@addReport');
 
 
 

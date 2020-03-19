@@ -10,6 +10,7 @@ use Laravel\Passport\HasApiTokens;
 use JD\Cloudder\Facades\Cloudder;
 use App\Model\Car\Car_For_Sell;
 use App\Model\Car\Spare_part;
+use App\Model\Service\Offer;
 use Illuminate\Http\Request;
 use App\Model\Group\Reply;
 use App\Model\Group\Post;
@@ -110,5 +111,10 @@ class User extends Authenticatable
     public function maintenance_center()
     {
         return $this->hasMany(Maintenance_Center::class);
+    }
+
+    public function offer()
+    {
+        return $this->hasMany(Offer::class);
     }
 }

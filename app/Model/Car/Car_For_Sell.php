@@ -26,8 +26,8 @@ class Car_For_Sell extends Model
             $cars[$i]['user_name']=$cars[$i]->user->name;
             $cars[$i]['car_name']=$cars[$i]->car->name;
             $cars[$i]['car_model_name']=$cars[$i]->car_model->name;
-            $cars[$i]['photos'] =
-                Photo::where('type',2)->where('object_id',$cars[$i]['id'])->get();
+            $cars[$i]['photos'] =Photo::select('name')->where('type',2)
+            ->where('object_id',$cars[$i]['id'])->get();
             unset($cars[$i]['user']);
             unset($cars[$i]['car']);
             unset($cars[$i]['car_model']);
