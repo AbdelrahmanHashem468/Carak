@@ -64,9 +64,15 @@ class CarController extends Controller
             return response()->json(["massge" =>" Failed to Store"],400);
     }
 
-    public function showCarsForSell()
+    public function showNewCars()
     {
-        $carForSell = Car_For_Sell::getAllCar();
+        $carForSell = Car_For_Sell::getAllCar(1);
+        return response()->json($carForSell ,200);
+    }
+
+    public function showUsedCars()
+    {
+        $carForSell = Car_For_Sell::getAllCar(0);
         return response()->json($carForSell ,200);
     }
 

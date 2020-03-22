@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Service;
 
 use App\Http\Controllers\Controller;
 use App\Model\Service\Solar_Price;
+use App\Model\Service\Notification;
 use App\Model\Service\Advertise;
 use App\Model\Service\Report;
 use Illuminate\Http\Request;
@@ -100,5 +101,11 @@ class ServiceController extends Controller
     {
         $solarPrice = Solar_Price::all();
         return response()->json($solarPrice,200);
+    }
+
+    public function showNotification($id)
+    {
+        $notifications = Notification::getAllNotifications($id);
+        return response()->json($notifications,200);
     }
 }

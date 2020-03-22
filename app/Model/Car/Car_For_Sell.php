@@ -16,9 +16,10 @@ class Car_For_Sell extends Model
     const UPDATED_AT = null;
 
 
-    public static function getAllCar()
+    public static function getAllCar($status)
     {
         $cars = Car_For_Sell::where('status','2')
+        ->where('car_status',$status)
         ->orderBy('created_at','desc')->paginate(50);
         
         for($i=0 ;$i<sizeof($cars); $i++)
@@ -34,7 +35,6 @@ class Car_For_Sell extends Model
         }
         return $cars;
     }
-
 
 
     public function user()

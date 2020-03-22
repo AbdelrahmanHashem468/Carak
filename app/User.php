@@ -6,6 +6,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Model\Maintenance\Maintenance_Center;
 use Illuminate\Notifications\Notifiable;
+use App\Model\Service\Notification;
 use Laravel\Passport\HasApiTokens;
 use JD\Cloudder\Facades\Cloudder;
 use App\Model\Car\Car_For_Sell;
@@ -116,5 +117,10 @@ class User extends Authenticatable
     public function offer()
     {
         return $this->hasMany(Offer::class);
+    }
+
+    public function notification()
+    {
+        return $this->hasMany(Notification::class);
     }
 }

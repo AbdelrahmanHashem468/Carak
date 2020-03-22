@@ -27,7 +27,8 @@ Route::get('/showCarModel','Car\CarController@showCarModel');
  **/
 Route::middleware('auth:api')
 ->post('/addCarForSell','Car\CarController@addCarForSell');
-Route::get('/showCarsForSell','Car\CarController@showCarsForSell');
+Route::get('/showNewCars','Car\CarController@showNewCars');
+Route::get('/showUsedCars','Car\CarController@showUsedCars');
 
 
 /**
@@ -83,6 +84,7 @@ Route::middleware('auth:api')
 ->post('/addOffer','Service\ServiceController@addOffer');
 Route::middleware('auth:api')
 ->post('/addReport','Service\ServiceController@addReport');
+Route::get('/showNotification/{id}','Service\ServiceController@showNotification');
 
 
 

@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
         $this->call(LikesTableSeeder::class);
         $this->call(Maintenance_TypesTableSeeder::class);
         $this->call(Maintenance_CentersTableSeeder::class);
+        $this->call(NotificationsTableSeeder::class);
 
 
 
