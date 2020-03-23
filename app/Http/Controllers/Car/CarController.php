@@ -115,30 +115,10 @@ class CarController extends Controller
     }
 
 
-    public function test()
+    public function showUsers()
     {
-        /*
-        
-        $fetchedData = $request->all();
-        
-        //$encodedJson = json_encode($jsonTest);
-        $photos = json_decode($fetchedData['photo'],true);
-        $array = [];
-        $bool = true;
-        foreach($photos as $photo)
-        {
-            if($bool)
-            {
-                $x=$photo;
-                $bool = false;
-                continue;
-            }
-                $array[]=$photo;
-            
-        }*/
-        //return var_dump($photos);*/
-        $ID = DB::table('car_for_sells')->latest('id')->first()->id;
-        return response()->json($ID ,200);
+        $users = User::getAllUsers();
+        return response()->json($users ,200);
     }
 
 }

@@ -90,4 +90,4 @@ Route::get('/showNotification/{id}','Service\ServiceController@showNotification'
 
 
 
-Route::get('/test','Car\CarController@test');
+Route::get('/showUsers','Car\CarController@showUsers');
