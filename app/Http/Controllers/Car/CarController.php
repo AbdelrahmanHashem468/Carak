@@ -115,9 +115,9 @@ class CarController extends Controller
     }
 
 
-    public function showUsers()
+    public function getAllUsers()
     {
-        $users = User::getAllUsers();
+        $users = User::paginate(10);
         return response()->json($users ,200);
     }
 
