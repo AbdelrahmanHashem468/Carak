@@ -20,7 +20,7 @@ class Car_For_Sell extends Model
     {
         $cars = Car_For_Sell::where('status','2')
         ->where('car_status',$status)
-        ->orderBy('created_at','desc')->paginate(50);
+        ->orderBy('created_at','desc')->paginate(10);
         
         for($i=0 ;$i<sizeof($cars); $i++)
         {

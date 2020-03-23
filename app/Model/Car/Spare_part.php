@@ -18,7 +18,7 @@ class Spare_part extends Model
     public static function getAllSparePart()
     {
         $spareParts = Spare_part::where('status','2')
-        ->orderBy('created_at','desc')->paginate(50);
+        ->orderBy('created_at','desc')->paginate(10);
         
         for($i=0 ;$i<sizeof($spareParts); $i++)
         {
