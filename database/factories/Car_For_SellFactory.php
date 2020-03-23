@@ -19,7 +19,7 @@ $factory->define(Car_For_Sell::class, function (Faker $faker) {
         'car_status' =>$rand1,
         'status' =>$rand2,
         'year' => $faker->randomNumber(4),
-        'photo' => $faker->name,
+        'photo' => 'https://res.cloudinary.com/cark/image/upload/v1584853653/vs2qb4smgv9ekubgjvmo.jpg',
         'car_id' => $Instance['car_id'],
         'car_model_id'=> $Instance['id'],
         'user_id'=>User::getInstance(),
