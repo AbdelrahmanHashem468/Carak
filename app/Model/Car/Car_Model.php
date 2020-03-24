@@ -48,6 +48,6 @@ class Car_Model extends Model
 
     public function car_price()
     {
-        return $this->belongsTo(Car_Price::class);
+        return $this->hasMany(Car_Price::class,'car_model_id');
     }
 }

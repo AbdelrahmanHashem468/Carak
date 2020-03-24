@@ -55,7 +55,7 @@ class Car extends Model
 
     public function car_price()
     {
-        return $this->hasMany(Car_Price::class);
+        return $this->hasMany(Car_Price::class,'car_id');
     }
 
     public function group()

@@ -14,17 +14,15 @@ class Car_Price extends Model
 
     public static function getAllCarPrice()
     {
-        $carsPrice = Car_Price::orderBy('created_at','desc')->paginate(50);
-        
-        for($i=0 ;$i<sizeof($carsPrice); $i++)
+        $carsPrices = Car::getCarModel();
+        foreach($carsPrices as $carsPrice)
         {
-            
-            $carsPrice[$i]['car_name']=$carsPrice[$i]->car->name;
-            $carsPrice[$i]['car_model_name']=$carsPrice[$i]->car_model->name;
-            unset($carsPrice[$i]['car']);
-            unset($carsPrice[$i]['car_model']);
+            foreach($carsPrice['car_models'] as $car)
+            {
+                $car['car_price'] =$car->car_price;
+            }
         }
-        return $carsPrice;
+        return $carsPrices;
     }
 
     public function car()
