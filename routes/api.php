@@ -90,4 +90,12 @@ Route::get('/showNotification/{id}','Service\ServiceController@showNotification'
 
 
 
+
+/**
+ * @var Admin_Routes
+ **/
+Route::group(['middleware' => ['auth:api', 'admin:api']], function() {
+
 Route::get('/getAllUsers','Car\CarController@getAllUsers');
+
+});
