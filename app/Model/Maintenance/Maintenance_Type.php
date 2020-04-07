@@ -22,9 +22,4 @@ class Maintenance_Type extends Model
         if(sizeof($maintenanceTypes)>0)
             return $maintenanceTypes[rand(0,sizeof($maintenanceTypes)-1)]['id'];
     }
-
-    public function maintenance_center()
-    {
-        return $this->hasMany(Maintenance_Center::class,'maintenance_type_id');
-    }
 }

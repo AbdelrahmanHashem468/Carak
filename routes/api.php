@@ -66,7 +66,7 @@ Route::middleware('auth:api')
  * @var Maintenance_Routes
  **/
 Route::get('/showM_Types','Maintenance\MaintenanceController@showM_Types');
-Route::get('/showM_Centers/{id}','Maintenance\MaintenanceController@showM_Centers');
+Route::get('/showM_Centers','Maintenance\MaintenanceController@showM_Centers');
 Route::middleware('auth:api')
 ->post('/addM_Center','Maintenance\MaintenanceController@addM_Center');
 

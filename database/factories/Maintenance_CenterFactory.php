@@ -9,13 +9,13 @@ use Faker\Generator as Faker;
 
 $factory->define(Maintenance_Center::class, function (Faker $faker) {
     $rand = rand(0,2);
+    $rand2 = rand(0,13);
     return [
         'name' => $faker->name,
-        'x_location' => $faker->word,
-        'y_location' => $faker->word,
+        'latitude' => $faker->randomFloat(2, 1, 100 ),
+        'longitude' => $faker->randomFloat(2, 1, 100 ),
         'status' => $rand,
         'user_id' => User::getInstance(),
-        'maintenance_type_id' => Maintenance_Type::getInstance(),
-
+        'maintenance_type' => $rand2,
     ];
 });

@@ -17,9 +17,9 @@ class MaintenanceController extends Controller
     }
 
 
-    public function showM_Centers($id)
+    public function showM_Centers()
     {
-        $m_Center = Maintenance_Center::getALLM_CenterByM_TypeId($id);
+        $m_Center = Maintenance_Center::getALLM_Center();
         return response()->json($m_Center,200);
     }
 
@@ -29,17 +29,17 @@ class MaintenanceController extends Controller
         $fetchedData = $request->all();
         $this->validate($request,[
             'name' => 'required',
-            'x_location' => 'required',
-            'y_location' => 'required',
-            'maintenance_type_id' => 'required'
+            'latitude' => 'required',
+            'longitude' => 'required',
+            'maintenance_type' => 'required'
         ]);
 
         $centerCreated = Maintenance_Center::create([
             'name'                => $fetchedData['name'],
-            'x_location'          => $fetchedData['x_location'],
-            'y_location'          => $fetchedData['y_location'],
+            'latitude'          => $fetchedData['latitude'],
+            'longitude'          => $fetchedData['longitude'],
             'status'              => 1,   
-            'maintenance_type_id' => $fetchedData['maintenance_type_id'],
+            'maintenance_type' => $fetchedData['maintenance_type'],
             'user_id'             => Auth::User()->id    
         ])->wasRecentlyCreated;
 

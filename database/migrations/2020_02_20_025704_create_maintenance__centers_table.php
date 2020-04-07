@@ -16,14 +16,13 @@ class CreateMaintenanceCentersTable extends Migration
         Schema::create('maintenance_centers', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('x_location');
-            $table->string('y_location');
+            $table->decimal('latitude', 9, 6);
+            $table->decimal('longitude', 9, 6);
+            $table->integer('maintenance_type');
             $table->integer('status');
             // 0 => deleted   1 => pending   2 => accepted
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');
-            $table->unsignedBigInteger('maintenance_type_id');
-            $table->foreign('maintenance_type_id')->references('id')->on('maintenance_types');
             $table->timestamps();
         });
     }

@@ -12,10 +12,9 @@ class Maintenance_Center extends Model
     public $table = "maintenance_centers";
 
 
-    public static function getALLM_CenterByM_TypeId($id)
+    public static function getALLM_Center()
     {
-        $m_Centers = Maintenance_Type::find($id)->maintenance_center
-        ->where('status',2);
+        $m_Centers = Maintenance_Center::where('status',2)->get();
         
         foreach($m_Centers as $m_Center)
         {
@@ -24,11 +23,6 @@ class Maintenance_Center extends Model
         }
         
         return $m_Centers;
-    }
-
-    public function maintenance_type()
-    {
-        return $this->belongsTo(Maintenance_Type::class);
     }
 
     public function user()
