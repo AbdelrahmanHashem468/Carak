@@ -22,7 +22,7 @@ class Spare_part extends Model
         
         for($i=0 ;$i<sizeof($spareParts); $i++)
         {
-            
+            $spareParts[$i]['created_date'] =$spareParts[$i]['created_at']->format('Y-m-d');
             $spareParts[$i]['user_name']=$spareParts[$i]->user->name;
             $spareParts[$i]['car_name']=$spareParts[$i]->car->name;
             $spareParts[$i]['car_model_name']=$spareParts[$i]->car_model->name;
