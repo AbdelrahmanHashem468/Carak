@@ -12,7 +12,7 @@ class Offer extends Model
 
     public static function getAllOffers()
     {
-        $offers = Offer::all();
+        $offers = Offer::where('status','2')->paginate(10);
         for($i=0;$i<sizeof($offers);$i++)
         {
             $offers[$i]['user_name'] = $offers[$i]->user->name;
