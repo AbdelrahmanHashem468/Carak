@@ -28,7 +28,9 @@ class Post extends Model
         $posts = Group::find($id)->post()->orderBy('created_at','desc')->paginate(10);
         for($i=0;$i<sizeof($posts);$i++)
         {
+            $posts[$i]['created_date'] =$posts[$i]['created_at']->format('Y-m-d');
             $posts[$i]['user_name'] = $posts[$i]->user->name;
+            $posts[$i]['user_photo'] = $posts[$i]->user->photo;
             unset($posts[$i]['user']);
         }
         return $posts;
