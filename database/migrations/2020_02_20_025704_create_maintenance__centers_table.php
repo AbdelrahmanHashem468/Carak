@@ -19,6 +19,9 @@ class CreateMaintenanceCentersTable extends Migration
             $table->decimal('latitude', 9, 6);
             $table->decimal('longitude', 9, 6);
             $table->integer('maintenance_type');
+            $table->string('photo')->nullable();
+            $table->string('idphoto1')->nullable();
+            $table->string('idphoto2')->nullable();
             $table->integer('status');
             // 0 => deleted   1 => pending   2 => accepted
             $table->unsignedBigInteger('user_id');

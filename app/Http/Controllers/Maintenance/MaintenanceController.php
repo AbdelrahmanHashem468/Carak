@@ -40,6 +40,9 @@ class MaintenanceController extends Controller
             'longitude'          => $fetchedData['longitude'],
             'status'              => 1,   
             'maintenance_type' => $fetchedData['maintenance_type'],
+            'photo' => $fetchedData['photo'],
+            'idphoto1' => $fetchedData['idphoto1'],
+            'idphoto2' => $fetchedData['idphoto2'],
             'user_id'             => Auth::User()->id    
         ])->wasRecentlyCreated;
 
