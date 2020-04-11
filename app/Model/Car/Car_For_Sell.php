@@ -24,6 +24,7 @@ class Car_For_Sell extends Model
         
         for($i=0 ;$i<sizeof($cars); $i++)
         {
+            $cars[$i]['created_date'] =$cars[$i]['created_at']->format('Y-m-d');
             $cars[$i]['user_name']=$cars[$i]->user->name;
             $cars[$i]['car_name']=$cars[$i]->car->name;
             $cars[$i]['car_model_name']=$cars[$i]->car_model->name;
