@@ -12,7 +12,8 @@ class Offer extends Model
 
     public static function getAllOffers()
     {
-        $offers = Offer::where('status','2')->paginate(10);
+        $offers = Offer::where('status','2')
+        ->orderBy('created_at','desc')->paginate(10);
         for($i=0;$i<sizeof($offers);$i++)
         {
             $offers[$i]['user_name'] = $offers[$i]->user->name;
