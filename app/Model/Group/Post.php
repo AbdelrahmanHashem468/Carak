@@ -25,8 +25,7 @@ class Post extends Model
 
     public static function getPostsByGroupId($id)
     {
-        $posts = Group::find($id)->post;
-
+        $posts = Group::find($id)->post()->paginate(10);
         for($i=0;$i<sizeof($posts);$i++)
         {
             $posts[$i]['user_name'] = $posts[$i]->user->name;
