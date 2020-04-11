@@ -34,6 +34,7 @@ class GroupController extends Controller
         $postCreated = Post::create([
             'text'      => $fetchedData['text'],
             'group_id'  => $fetchedData['group_id'],
+            'photo'  => $fetchedData['photo'],
             'user_id'   => Auth::User()->id
         ])->wasRecentlyCreated;
 
