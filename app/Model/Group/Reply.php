@@ -37,6 +37,8 @@ class Reply extends Model
         for($i=0;$i<sizeof($replies);$i++)
         {
             $replies[$i]["user_name"] = $replies[$i]->user->name;
+            $replies[$i]["user_photo"] = $replies[$i]->user->photo;
+            $replies[$i]['created_date'] =$replies[$i]['created_at']->format('Y-m-d');
             $replies[$i]["likes"] = count($replies[$i]->like);
             unset($replies[$i]["user"]);
             unset($replies[$i]["like"]);
