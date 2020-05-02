@@ -58,7 +58,8 @@ class UserController extends Controller
 
     public function profile()
     {
-        
+        $userData = User::getAllUserData();
+        return $userData;
     }
 
     public function uploadimge(Request $request)

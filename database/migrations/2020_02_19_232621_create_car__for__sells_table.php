@@ -21,6 +21,7 @@ class CreateCarForSellsTable extends Migration
             $table->string('address');
             $table->integer('car_status');
             // 0 => used   1 => new
+            $table->string('rejection_reason')->nullable();
             $table->integer('status');
             // 0 => deleted   1 => pending   2 => accepted
             $table->string('year');

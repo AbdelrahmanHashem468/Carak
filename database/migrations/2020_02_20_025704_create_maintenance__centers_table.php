@@ -22,6 +22,7 @@ class CreateMaintenanceCentersTable extends Migration
             $table->string('photo')->nullable();
             $table->string('idphoto1')->nullable();
             $table->string('idphoto2')->nullable();
+            $table->string('rejection_reason')->nullable();
             $table->integer('status');
             // 0 => deleted   1 => pending   2 => accepted
             $table->unsignedBigInteger('user_id');

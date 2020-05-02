@@ -18,6 +18,7 @@ class CreateOffersTable extends Migration
             $table->string('title');
             $table->text('description');
             $table->string('photo');
+            $table->string('rejection_reason')->nullable();
             $table->integer('status');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users');

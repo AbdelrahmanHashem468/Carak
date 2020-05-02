@@ -20,6 +20,7 @@ class CreateSparePartsTable extends Migration
             $table->string('price');
             $table->string('address');
             $table->string('photo');
+            $table->string('rejection_reason')->nullable();
             $table->integer('status');
             // 0 => deleted   1 => pending   2 => accepted
             $table->unsignedBigInteger('car_id');

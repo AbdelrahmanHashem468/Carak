@@ -15,6 +15,7 @@ use App\Model\Service\Offer;
 use Illuminate\Http\Request;
 use App\Model\Group\Reply;
 use App\Model\Group\Post;
+use Auth;
 
 class User extends Authenticatable
 {
@@ -58,6 +59,19 @@ class User extends Authenticatable
         if(sizeof($users)>0)
             return $users[rand(0,sizeof($users)-1)]['id'];
     }
+
+    public static function getAllUserData()
+    {
+        $data=[];
+        $id = Auth::User()->id;
+        $data['spare_parts'] = Auth::User()->spare_part;
+        $data['car_for_sell'] = Auth::User()->Car_For_Sell;
+        $data['offer'] = Auth::User()->offer;
+        $data['center'] = Auth::User()->maintenance_center;
+        return $data;
+    }
+
+
 
     public static function fileUpload(Request $request)
     {
