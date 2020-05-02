@@ -65,7 +65,8 @@ class User extends Authenticatable
         $data=[];
         $id = Auth::User()->id;
         $data['spare_parts'] = Auth::User()->spare_part;
-        $data['car_for_sell'] = Auth::User()->Car_For_Sell;
+        $data['Newcar'] = Auth::User()->Car_For_Sell->where('car_status',1);
+        $data['Usedcar'] = Auth::User()->Car_For_Sell->where('car_status',0);
         $data['offer'] = Auth::User()->offer;
         $data['center'] = Auth::User()->maintenance_center;
         return $data;
