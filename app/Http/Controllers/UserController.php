@@ -56,6 +56,11 @@ class UserController extends Controller
     }
 
 
+    public function profile()
+    {
+        
+    }
+
     public function uploadimge(Request $request)
     {
         

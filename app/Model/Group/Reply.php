@@ -33,7 +33,7 @@ class Reply extends Model
 
     Public static function getRepliesByPostId($id)
     {
-        $replies = Post::find($id)->reply;
+        $replies = Post::find($id)->reply()->orderBy('created_at','desc')->paginate(10);
         for($i=0;$i<sizeof($replies);$i++)
         {
             $replies[$i]["user_name"] = $replies[$i]->user->name;
