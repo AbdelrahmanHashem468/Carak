@@ -87,7 +87,7 @@ class ServiceController extends Controller
 
     public function showNews()
     {
-        
+        $news = News::paginate(10);
         return response()->json($news,200);
     }
 
