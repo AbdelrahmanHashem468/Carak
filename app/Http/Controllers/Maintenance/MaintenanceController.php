@@ -17,9 +17,9 @@ class MaintenanceController extends Controller
     }
 
 
-    public function showM_Centers()
+    public function showM_Centers(Request $request)
     {
-        $m_Center = Maintenance_Center::getALLM_Center();
+        $m_Center = Maintenance_Center::getALLM_Center($request);
         return response()->json($m_Center,200);
     }
 

@@ -26,5 +26,7 @@ class DatabaseSeeder extends Seeder
         $this->call(Maintenance_CentersTableSeeder::class);
         $this->call(NotificationsTableSeeder::class);
         $this->call(OffersTableSeeder::class);
+        $this->call(Solar_priceTableSeeder::class);
+        $this->call(AdvertisesTableSeeder::class);
     }
 }

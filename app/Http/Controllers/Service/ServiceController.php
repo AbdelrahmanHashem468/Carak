@@ -87,20 +87,15 @@ class ServiceController extends Controller
 
     public function showNews()
     {
-        $news = News::all();
+        
         return response()->json($news,200);
     }
 
-    public function showAdvertises()
+    public function SolarPrice_Advertise()
     {
-        $advertises = Advertise::all();
-        return response()->json($advertises,200);
-    }
-
-    public function showSolarPrice()
-    {
-        $solarPrice = Solar_Price::all();
-        return response()->json($solarPrice,200);
+        $data['solar_price'] = Solar_Price::all();
+        $data['advertise'] = Advertise::all();
+        return response()->json($data,200);
     }
 
     public function showNotification($id)

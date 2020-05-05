@@ -78,8 +78,7 @@ Route::middleware('auth:api')
 /**
  * @var Service_Routes
  **/
-Route::get('/showAdvertises','Service\ServiceController@showAdvertises');
-Route::get('/showSolarPrice','Service\ServiceController@showSolarPrice');
+Route::get('/SolarPrice_Advertise','Service\ServiceController@SolarPrice_Advertise');
 Route::get('/showNews','Service\ServiceController@shownews');
 Route::get('/showOffers','Service\ServiceController@showOffers');
 Route::middleware('auth:api')
