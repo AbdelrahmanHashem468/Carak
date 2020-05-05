@@ -17,6 +17,8 @@ class Offer extends Model
         for($i=0;$i<sizeof($offers);$i++)
         {
             $offers[$i]['user_name'] = $offers[$i]->user->name;
+            $offers[$i]['user_photo'] = $offers[$i]->user->photo;
+            $offers[$i]['user_phonenumber'] = $offers[$i]->user->phonenumber;
             unset( $offers[$i]['user']);
             $offers[$i]['photos'] =
             Photo::select('name')->where('type',3)

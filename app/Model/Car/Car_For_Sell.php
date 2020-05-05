@@ -26,6 +26,8 @@ class Car_For_Sell extends Model
         {
             $cars[$i]['created_date'] =$cars[$i]['created_at']->format('Y-m-d');
             $cars[$i]['user_name']=$cars[$i]->user->name;
+            $cars[$i]['user_photo']=$cars[$i]->user->photo;
+            $cars[$i]['user_phonenumber']=$cars[$i]->user->phonenumber;
             $cars[$i]['car_name']=$cars[$i]->car->name;
             $cars[$i]['car_model_name']=$cars[$i]->car_model->name;
             $cars[$i]['photos'] =Photo::select('name')->where('type',2)

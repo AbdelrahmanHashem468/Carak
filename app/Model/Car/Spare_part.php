@@ -24,6 +24,8 @@ class Spare_part extends Model
         {
             $spareParts[$i]['created_date'] =$spareParts[$i]['created_at']->format('Y-m-d');
             $spareParts[$i]['user_name']=$spareParts[$i]->user->name;
+            $spareParts[$i]['user_photo']=$spareParts[$i]->user->photo;
+            $spareParts[$i]['user_phonenumber']=$spareParts[$i]->user->phonenumber;
             $spareParts[$i]['car_name']=$spareParts[$i]->car->name;
             $spareParts[$i]['car_model_name']=$spareParts[$i]->car_model->name;
             $spareParts[$i]['photos'] = Photo::select('name')->where('type',1)
