@@ -17,13 +17,14 @@ class Maintenance_Center extends Model
     {
         $lat=$request->latitude;
         $lon=$request->longitude;
+        $var=25;
         $m_Centers = Maintenance_Center::select(DB::raw
         ('*, ( 6367 * acos( cos( radians('.$lat.') ) 
         * cos( radians( latitude ) ) * 
         cos( radians( longitude ) - radians('.$lon.') ) 
         + sin( radians('.$lat.') ) * sin( radians( latitude ) ) ) ) 
         AS distance'))
-        ->having('distance', '<', 25)
+        ->having('distance', '<', $var)
         ->orderBy('distance')
         ->get();
         
