@@ -15,19 +15,16 @@ class Maintenance_Center extends Model
 
     public static function getALLM_Center(Request $request)
     {
-        $lat=$request->latitude;
-        $lon=$request->longitude;
-        $var=25;
-        $m_Centers = Maintenance_Center::selectRaw('*, 
-        ( 6367 * acos( cos( radians( ? ) ) * 
-        cos( radians( latitude ) ) * 
-        cos( radians( longitude ) - radians( ? ) ) + sin( radians( ? ) ) *
-        sin( radians( latitude ) ) ) ) AS distance', 
-        [$lat, $lon, $lat])
-        ->having('distance', '<', 30)
-        ->orderBy('distance')
-        ->get();
+        $latitude=$request->latitude;
+        $longitude=$request->longitude;
 
+        $m_Centers =DB::select('select * , 
+        ( 6367 * acos( cos( radians('.$latitude.') ) * cos( radians( latitude ) ) * cos( radians( longitude )
+         - radians('.$longitude.') ) + sin( radians('.$latitude.') ) * sin( radians( latitude ) ) ) ) 
+        AS distance FROM maintenance_centers GROUP BY id 
+         HAVING ( 6367 * acos( cos( radians('.$latitude.') ) * 
+         cos( radians( latitude ) ) * cos( radians( longitude ) - radians('.$longitude.') ) 
+         + sin( radians('.$latitude.') ) * sin( radians( latitude ) ) ) ) < 25');
 
         /*foreach($m_Centers as $m_Center)
         {
