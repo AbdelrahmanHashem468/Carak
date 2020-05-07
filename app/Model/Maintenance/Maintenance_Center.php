@@ -23,7 +23,7 @@ class Maintenance_Center extends Model
         * cos( radians( latitude ) ) * 
         cos( radians( longitude ) - radians('.$lon.') ) 
         + sin( radians('.$lat.') ) * sin( radians( latitude ) ) ) ) 
-        As distance'))->groupBy('distance')
+        As distance'))
         ->havingRaw('distance < ?', [25])
         ->orderBy('distance')
         ->get();
