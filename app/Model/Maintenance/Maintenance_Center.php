@@ -18,16 +18,17 @@ class Maintenance_Center extends Model
         $lat=$request->latitude;
         $lon=$request->longitude;
         $var=25;
-        $m_Centers = Maintenance_Center::select('id',DB::raw
-        ('( 6367 * acos( cos( radians('.$lat.') ) 
-        * cos( radians( latitude ) ) * 
-        cos( radians( longitude ) - radians('.$lon.') ) 
-        + sin( radians('.$lat.') ) * sin( radians( latitude ) ) ) ) 
-        As distance'))
-        ->groupBy('id')
-        ->havingRaw('distance < ?', [25])
+        $m_Centers = Maintenance_Center::selectRaw('*, 
+        ( 6367 * acos( cos( radians( ? ) ) * 
+        cos( radians( latitude ) ) * 
+        cos( radians( longitude ) - radians( ? ) ) + sin( radians( ? ) ) *
+        sin( radians( latitude ) ) ) ) AS distance', 
+        [$lat, $lon, $lat])
+        ->having('distance', '<', 30)
         ->orderBy('distance')
         ->get();
+
+
         /*foreach($m_Centers as $m_Center)
         {
             $m_Center['user_name'] = $m_Center->user->name;
