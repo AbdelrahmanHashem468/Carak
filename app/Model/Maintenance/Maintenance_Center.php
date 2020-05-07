@@ -23,11 +23,10 @@ class Maintenance_Center extends Model
         * cos( radians( latitude ) ) * 
         cos( radians( longitude ) - radians('.$lon.') ) 
         + sin( radians('.$lat.') ) * sin( radians( latitude ) ) ) ) 
-        AS distance'))
-        ->having('distance', '<', $var)
+        As distance'))->groupBy('distance')
+        ->havingRaw('distance < ?', [25])
         ->orderBy('distance')
         ->get();
-        
         /*foreach($m_Centers as $m_Center)
         {
             $m_Center['user_name'] = $m_Center->user->name;
