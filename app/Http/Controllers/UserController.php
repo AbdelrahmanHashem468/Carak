@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use Hash;
 use Illuminate\Http\Request;
 use App\User;
+use Auth;
+
+
 class UserController extends Controller
 {
     public function register(Request $request)
@@ -59,13 +63,22 @@ class UserController extends Controller
     public function profile()
     {
         $userData = User::getAllUserData();
-        return $userData;
+        return response()->json($userData,200);
     }
+
+
+    public function checkPassword(Request $request)
+    {
+        
+        return response()->json(
+            Hash::check($request->password, Auth::user()->password, []));
+            
+    }
+
 
     public function uploadimge(Request $request)
     {
-        
-        return User::fileUpload($request);
+        return response()->json(User::fileUpload($request),200);
     }
 
 }

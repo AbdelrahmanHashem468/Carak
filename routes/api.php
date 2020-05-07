@@ -15,7 +15,8 @@ Route::post('/login'        ,'UserController@login'     );
 Route::post('/uploadimage'  ,'UserController@uploadimge');
 Route::middleware('auth:api')
 ->get('/profile'  ,'UserController@profile');
-
+Route::middleware('auth:api')
+->post('/checkPassword'  ,'UserController@checkPassword');
 
 
 /**
