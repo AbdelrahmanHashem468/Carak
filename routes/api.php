@@ -20,7 +20,7 @@ Route::middleware('auth:api')
 Route::middleware('auth:api')
 ->post('/checkPassword'  ,'UserController@checkPassword');
 Route::middleware('auth:api')
-->put('/editProfile'  ,'UserController@editProfile');
+->post('/editProfile'  ,'UserController@editProfile');
 
 
 
