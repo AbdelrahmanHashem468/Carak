@@ -75,6 +75,21 @@ class UserController extends Controller
             
     }
 
+    public function editProfile(Request $request)
+    {
+        $user = Auth::User();
+        User::where('id',$user->id)->update([
+            'name' => $request->name,
+            'photo' => $request->photo,
+            'phonenumber'=>$request->phonenumber,
+        ]);
+        if($request->password!=null)
+            $user->password = bcrypt($request->password);
+        $user->save();
+        $user = User::find($user->id);
+        return response()->json($user,200);
+    }
+
 
     public function uploadimge(Request $request)
     {

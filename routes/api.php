@@ -7,6 +7,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+
+
 /**
  * @var Authantication_Routes
  **/
@@ -17,6 +19,9 @@ Route::middleware('auth:api')
 ->get('/profile'  ,'UserController@profile');
 Route::middleware('auth:api')
 ->post('/checkPassword'  ,'UserController@checkPassword');
+Route::middleware('auth:api')
+->post('/editProfile'  ,'UserController@editProfile');
+
 
 
 /**
