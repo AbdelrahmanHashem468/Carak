@@ -40,6 +40,7 @@ class MaintenanceController extends Controller
             'longitude'          => $fetchedData['longitude'],
             'status'              => 2,   
             'maintenance_type' => $fetchedData['maintenance_type'],
+            'number' => $fetchedData['number'],
             'photo' => $fetchedData['photo'],
             'idphoto1' => $fetchedData['idphoto1'],
             'idphoto2' => $fetchedData['idphoto2'],
