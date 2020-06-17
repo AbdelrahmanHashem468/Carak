@@ -104,5 +104,8 @@ Route::get('/showNotification/{id}','Service\ServiceController@showNotification'
 Route::group(['middleware' => ['auth:api', 'admin:api']], function() {
 
 Route::get('/getAllUsers','Car\CarController@getAllUsers');
+Route::get('/pendingSparePart','Car\SparePartController@pendingSparePart');
+Route::get('/pendingCars','Car\CarController@pendingCars');
+
 
 });

@@ -76,6 +76,13 @@ class CarController extends Controller
         return response()->json($carForSell ,200);
     }
 
+    public function pendingCars()
+    {
+        $carForSell = Car_For_Sell::getPendingCars();
+        return response()->json($carForSell,200);
+    }
+
+
     public function addCarPrice(Request $request)
     {
         $fetchedData = $request->all();

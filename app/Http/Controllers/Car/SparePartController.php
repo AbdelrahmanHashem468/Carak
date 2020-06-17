@@ -67,4 +67,10 @@ class SparePartController extends Controller
         return response()->json($spareParts ,200);
     }
 
+    public function pendingSparePart()
+    {
+        $spareParts = Spare_Part::getPendingSpareParts();
+        return response()->json($spareParts,200);
+    }
+
 }

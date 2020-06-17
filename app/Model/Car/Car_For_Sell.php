@@ -39,6 +39,26 @@ class Car_For_Sell extends Model
         return $cars;
     }
 
+    public static function getPendingCars()
+    {
+        $cars = Car_For_Sell::where('status','1')
+        ->orderBy('created_at','desc')->paginate(10);
+        for($i=0 ;$i<sizeof($cars); $i++)
+        {
+            $cars[$i]['created_date'] =$cars[$i]['created_at']->format('Y-m-d');
+            $cars[$i]['user_name']=$cars[$i]->user->name;
+            $cars[$i]['user_photo']=$cars[$i]->user->photo;
+            $cars[$i]['user_phonenumber']=$cars[$i]->user->phonenumber;
+            $cars[$i]['car_name']=$cars[$i]->car->name;
+            $cars[$i]['car_model_name']=$cars[$i]->car_model->name;
+            $cars[$i]['photos'] =Photo::select('name')->where('type',2)
+            ->where('object_id',$cars[$i]['id'])->get();
+            unset($cars[$i]['user']);
+            unset($cars[$i]['car']);
+            unset($cars[$i]['car_model']);
+        }
+        return $cars;
+    }
 
     public function user()
     {
