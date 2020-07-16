@@ -63,14 +63,38 @@ class SparePartController extends Controller
 
     public function showSparePart()
     {
-        $spareParts = Spare_part::getAllSparePart();
+        try 
+        {
+            $spareParts = Spare_part::getAllSparePart();
         return response()->json($spareParts ,200);
+        
+        } 
+        catch (Exception $e)
+        {
+            return response()->json($e->getMessage);
+        }
+        
     }
 
     public function pendingSparePart()
     {
         $spareParts = Spare_Part::getPendingSpareParts();
         return response()->json($spareParts,200);
+    }
+
+    public function acceptOrRejectSP(Request $request)
+    {
+        $fetchedData = $request->all();
+
+        $isEdited = Spare_Part::where('id',$fetchedData['id'])->update([
+            'status' => $fetchedData['status']
+        ]);
+
+        if($isEdited)
+        return response()->json(["massge" => "Edit Successfully"],200);
+
+        else
+            return response()->json(["massge" =>" Failed to Edit"],400);
     }
 
 }

@@ -14,7 +14,7 @@ class AdminTableSeeder extends Seeder
     {
         DB::table('users')->insert([
             'name' => 'Admin',
-            'email' => 'Admin@gmail.com',
+            'email' => 'admin@gmail.com',
             'phonenumber' => '01140073150',
             'photo' => 'https://res.cloudinary.com/cark/image/upload/v1584853653/vs2qb4smgv9ekubgjvmo.jpg',
             'role' => 'admin',
