@@ -82,6 +82,21 @@ class CarController extends Controller
         return response()->json($carForSell,200);
     }
 
+    public function acceptOrRejectCar(Request $request)
+    {
+        $fetchedData = $request->all();
+
+        $isEdited = Car_For_Sell::where('id',$fetchedData['id'])->update([
+            'status' => $fetchedData['status']
+        ]);
+
+        if($isEdited)
+        return response()->json(["massge" => "Edit Successfully"],200);
+
+        else
+            return response()->json(["massge" =>" Failed to Edit"],400);
+    }
+
 
     public function addCarPrice(Request $request)
     {
