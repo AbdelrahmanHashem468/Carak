@@ -18,7 +18,7 @@ class ServiceController extends Controller
 {
     public function showOffers()
     {
-        $offers = Offer::getAllOffers();
+        $offers = Offer::getAllOffers(2);
         return response()->json($offers,200);
     }
 
@@ -62,6 +62,28 @@ class ServiceController extends Controller
             return response()->json(["massage"=>"Failed to Store"],400);
         }
     }
+
+    public function pendingOffers()
+    {
+        $offers = Offer::getAllOffers(1);
+        return response()->json($offers,200);
+    }
+
+    public function acceptOrRejectOffer(Request $request)
+    {
+        $fetchedData = $request->all();
+
+        $isEdited = Offer::where('id',$fetchedData['id'])->update([
+            'status' => $fetchedData['status']
+        ]);
+
+        if($isEdited)
+            return response()->json(["massge" => "Edit Successfully"],200);
+
+        else
+            return response()->json(["massge" =>" Failed to Edit"],400);
+    }
+
 
     public function addReport(Request $request)
     {

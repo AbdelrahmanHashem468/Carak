@@ -57,5 +57,25 @@ class MaintenanceController extends Controller
         }
     }
 
+    public function pendingM_Centers()
+    {
+        $m_Center = Maintenance_Center::getPendingM_Center();
+        return response()->json($m_Center,200);
+    }
+
+    public function acceptOrRejectMC(Request $request)
+    {
+        $fetchedData = $request->all();
+
+        $isEdited = Maintenance_Center::where('id',$fetchedData['id'])->update([
+            'status' => $fetchedData['status']
+        ]);
+
+        if($isEdited)
+        return response()->json(["massge" => "Edit Successfully"],200);
+
+        else
+            return response()->json(["massge" =>" Failed to Edit"],400);
+    }
 
 }

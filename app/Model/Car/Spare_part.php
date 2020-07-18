@@ -15,32 +15,11 @@ class Spare_part extends Model
     const UPDATED_AT = null;
 
 
-    public static function getAllSparePart()
+    public static function getAllSparePart($status)
     {
-        $spareParts = Spare_part::where('status','2')
+        $spareParts = Spare_part::where('status',$status)
         ->orderBy('created_at','desc')->paginate(10);
         
-        for($i=0 ;$i<sizeof($spareParts); $i++)
-        {
-            $spareParts[$i]['created_date'] =$spareParts[$i]['created_at']->format('Y-m-d');
-            $spareParts[$i]['user_name']=$spareParts[$i]->user->name;
-            $spareParts[$i]['user_photo']=$spareParts[$i]->user->photo;
-            $spareParts[$i]['user_phonenumber']=$spareParts[$i]->user->phonenumber;
-            $spareParts[$i]['car_name']=$spareParts[$i]->car->name;
-            $spareParts[$i]['car_model_name']=$spareParts[$i]->car_model->name;
-            $spareParts[$i]['photos'] = Photo::select('name')->where('type',1)
-            ->where('object_id',$spareParts[$i]['id'])->get();
-            unset($spareParts[$i]['user']);
-            unset($spareParts[$i]['car']);
-            unset($spareParts[$i]['car_model']);
-        }
-        return $spareParts;
-    }
-
-    public static function getPendingSpareParts()
-    {
-        $spareParts = Spare_part::where('status','1')
-        ->orderBy('created_at','desc')->paginate(10);
         for($i=0 ;$i<sizeof($spareParts); $i++)
         {
             $spareParts[$i]['created_date'] =$spareParts[$i]['created_at']->format('Y-m-d');

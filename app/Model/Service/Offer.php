@@ -10,9 +10,9 @@ class Offer extends Model
 {
     protected $guarded = [];
 
-    public static function getAllOffers()
+    public static function getAllOffers($status)
     {
-        $offers = Offer::where('status','2')
+        $offers = Offer::where('status',$status)
         ->orderBy('created_at','desc')->paginate(10);
         for($i=0;$i<sizeof($offers);$i++)
         {

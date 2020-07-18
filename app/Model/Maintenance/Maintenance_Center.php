@@ -26,29 +26,27 @@ class Maintenance_Center extends Model
          cos( radians( latitude ) ) * cos( radians( longitude ) - radians('.$longitude.') ) 
          + sin( radians('.$latitude.') ) * sin( radians( latitude ) ) ) ) < 25');
 
-        /*foreach($m_Centers as $m_Center)
+        for($i=0 ;$i<sizeof($m_Centers); $i++)        
         {
-            $m_Center['user_name'] = $m_Center->user->name;
-            unset($m_Center['user']);
-        }*/
-        
-        return $m_Centers;
-    }
-
-    /*
-    public static function getALLM_Center()
-    {
-        $m_Centers = Maintenance_Center::where('status',2)->get();
-        
-        foreach($m_Centers as $m_Center)
-        {
-            $m_Center['user_name'] = $m_Center->user->name;
-            unset($m_Center['user']);
+            $array = get_object_vars($m_Centers[$i]);
+            $m_Centers[$i]->user_name = User::find($array['user_id'])->name;
+            
         }
         
         return $m_Centers;
     }
-    */
+
+
+    public static function getPendingM_Center()
+    {
+        $m_Centers = Maintenance_Center::where('status','1')->paginate(10);
+        for($i=0;$i<sizeof($m_Centers);$i++)
+        {
+            $m_Centers[$i]['user_name'] = $m_Centers[$i]->user->name;
+            unset($m_Centers[$i]['user']);
+        }
+        return $m_Centers;
+    }
 
 
     public function user()

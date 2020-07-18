@@ -105,10 +105,33 @@ Route::group(['middleware' => ['auth:api', 'admin:api']], function() {
 
 Route::get('/getAllUsers','Car\CarController@getAllUsers');
 
-Route::get('/pendingSparePart','Car\SparePartController@pendingSparePart');
-Route::get('/pendingCars','Car\CarController@pendingCars');
 
+/**
+ * @var SpareParts_Routes
+ **/
+Route::get('/pendingSparePart','Car\SparePartController@pendingSparePart');
 Route::put('/acceptOrRejectSP','Car\SparePartController@acceptOrRejectSP');
+
+
+/**
+ * @var Car_For_Sell_Routes
+ **/
+Route::get('/pendingCars','Car\CarController@pendingCars');
 Route::put('/acceptOrRejectCar','Car\CarController@acceptOrRejectCar');
+
+
+/**
+ * @var Offers_Routes
+ **/
+Route::get('/pendingOffers','Service\ServiceController@pendingOffers');
+Route::put('/acceptOrRejectOffer','Service\ServiceController@acceptOrRejectOffer');
+
+
+/**
+ * @var Maintenance_Routes
+ **/
+Route::get('/pendingM_Centers','Maintenance\MaintenanceController@pendingM_Centers');
+Route::put('/acceptOrRejectMC','Maintenance\MaintenanceController@acceptOrRejectMC');
+
 
 });

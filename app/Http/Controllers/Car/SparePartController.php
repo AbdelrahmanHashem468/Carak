@@ -65,7 +65,7 @@ class SparePartController extends Controller
     {
         try 
         {
-            $spareParts = Spare_part::getAllSparePart();
+            $spareParts = Spare_part::getAllSparePart(2);
         return response()->json($spareParts ,200);
         
         } 
@@ -78,7 +78,7 @@ class SparePartController extends Controller
 
     public function pendingSparePart()
     {
-        $spareParts = Spare_Part::getPendingSpareParts();
+        $spareParts = Spare_Part::getAllSparePart(1);
         return response()->json($spareParts,200);
     }
 
