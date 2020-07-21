@@ -60,6 +60,38 @@ class UserController extends Controller
     }
 
 
+    public function adminLogin(Request $request)
+    {
+        $user = User::where('email',$request->email)->get();
+
+        if($user && $user[0]['role'] == 'admin')
+        {
+            $credentials = [
+                'email' => $request->email,
+                'password' => $request->password
+            ];
+            if (auth()->attempt($credentials)) 
+            {
+                $token = auth()->user()->createToken('TutsForWeb')->accessToken;
+                $user = auth()->user();     
+                return response()->json([
+                    'token' => $token,
+                    'user' => $user,
+                ], 200);
+            } 
+            else
+            {
+                return response()->json(['error' => 'UnAuthorised'], 401);
+            }
+        }
+        else
+            {
+                return response()->json(['error' => 'Not Found'], 401);
+            }
+        
+    }
+
+
     public function profile()
     {
         $userData = User::getAllUserData();

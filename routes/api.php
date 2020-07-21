@@ -96,12 +96,15 @@ Route::get('/showNotification/{id}','Service\ServiceController@showNotification'
 
 
 
+Route::post('/adminLogin','UserController@adminLogin');
 
 
 /**
  * @var Admin_Routes
  **/
 Route::group(['middleware' => ['auth:api', 'admin:api']], function() {
+
+
 
 Route::get('/getAllUsers','Car\CarController@getAllUsers');
 
