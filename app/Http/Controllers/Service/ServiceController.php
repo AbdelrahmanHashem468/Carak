@@ -130,6 +130,31 @@ class ServiceController extends Controller
         return response()->json($news,200);
     }
 
+    public function addNews(Request $request)
+    {
+        $fetchedData = $request->all();
+
+        $this->validate($request,[
+            'title' => 'required',
+            'description' => 'required',
+            'photo' => 'required',
+        ]);
+        $newsCreated = News::create([
+            'title' => $fetchedData['title'],
+            'description' => $fetchedData['title'],
+            'photo' => $fetchedData['photo']
+        ])->wasRecentlyCreated;
+
+        if($newsCreated)
+        {
+            return response()->json(["massage"=>"Store Successfully"],200);
+        }
+        else
+        {
+            return response()->json(["massage"=>"Failed to Store"],400);
+        }
+    }
+
     public function SolarPrice_Advertise()
     {
         $data['solar_price'] = Solar_Price::all();

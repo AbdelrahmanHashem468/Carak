@@ -138,4 +138,6 @@ Route::get('/pendingM_Centers','Maintenance\MaintenanceController@pendingM_Cente
 Route::put('/acceptOrRejectMC','Maintenance\MaintenanceController@acceptOrRejectMC');
 
 Route::get('/showReport','Service\ServiceController@showReport');
+
+Route::post('/addNews','Service\ServiceController@addNews');
 });
