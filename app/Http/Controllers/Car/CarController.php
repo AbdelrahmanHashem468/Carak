@@ -66,19 +66,25 @@ class CarController extends Controller
 
     public function showNewCars()
     {
-        $carForSell = Car_For_Sell::getAllCar(1);
+        $carForSell = Car_For_Sell::getAllCar(2,1);
         return response()->json($carForSell ,200);
     }
 
     public function showUsedCars()
     {
-        $carForSell = Car_For_Sell::getAllCar(0);
+        $carForSell = Car_For_Sell::getAllCar(2,0);
         return response()->json($carForSell ,200);
     }
 
-    public function pendingCars()
+    public function pendingNewCars()
     {
-        $carForSell = Car_For_Sell::getPendingCars();
+        $carForSell = Car_For_Sell::getAllCar(1,1);
+        return response()->json($carForSell,200);
+    }
+
+    public function pendingUsedCars()
+    {
+        $carForSell = Car_For_Sell::getAllCar(1,0);
         return response()->json($carForSell,200);
     }
 

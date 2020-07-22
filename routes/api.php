@@ -119,7 +119,8 @@ Route::put('/acceptOrRejectSP','Car\SparePartController@acceptOrRejectSP');
 /**
  * @var Car_For_Sell_Routes
  **/
-Route::get('/pendingCars','Car\CarController@pendingCars');
+Route::get('/pendingNewCars','Car\CarController@pendingNewCars');
+Route::get('/pendingUsedCars','Car\CarController@pendingUsedCars');
 Route::put('/acceptOrRejectCar','Car\CarController@acceptOrRejectCar');
 
 
