@@ -106,6 +106,12 @@ class ServiceController extends Controller
             return response()->json(["massage"=>"Failed to Store"],400);
         }
     }
+    public function showReport()
+    {
+        $reports = Report::paginate(10);
+        return response()->json($reports,200);
+
+    }
 
     public function showNews()
     {

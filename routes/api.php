@@ -137,5 +137,5 @@ Route::put('/acceptOrRejectOffer','Service\ServiceController@acceptOrRejectOffer
 Route::get('/pendingM_Centers','Maintenance\MaintenanceController@pendingM_Centers');
 Route::put('/acceptOrRejectMC','Maintenance\MaintenanceController@acceptOrRejectMC');
 
-
+Route::get('/showReport','Service\ServiceController@showReport');
 });
