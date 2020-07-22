@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Model\Service\Photo;
 use App\Model\Service\Offer;
 use App\Model\Service\News;
+use App\User;
 use Auth;
 use DB;
 
@@ -109,6 +110,16 @@ class ServiceController extends Controller
     public function showReport()
     {
         $reports = Report::paginate(10);
+        for($i=0;$i<sizeof($reports);$i++)
+        {
+            $user = User::find($reports[$i]['user_id']);
+            $reports[$i]['user_name'] = $user->name;
+            $reports[$i]['user_email'] = $user->email;
+            $reports[$i]['user_number'] = $user->phonenumber;
+            $reports[$i]['user_photo'] = $user->photo;
+
+
+        }
         return response()->json($reports,200);
 
     }
