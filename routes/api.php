@@ -96,13 +96,13 @@ Route::get('/showNotification/{id}','Service\ServiceController@showNotification'
 
 
 
-Route::middleware('cors:api')->post('/adminLogin','UserController@adminLogin');
+Route::post('/adminLogin','UserController@adminLogin');
 
 
 /**
  * @var Admin_Routes
  **/
-Route::group(['middleware' => ['auth:api', 'admin:api','cors:api']], function() {
+Route::group(['middleware' => ['auth:api', 'admin:api']], function() {
 
 
 
