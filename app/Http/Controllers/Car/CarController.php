@@ -7,6 +7,7 @@ use App\Model\Car\Car_For_Sell;
 use Illuminate\Http\Request;
 use App\Model\Service\Photo;
 use App\Model\Car\Car_Price;
+use App\Model\Car\Car_Model;
 use App\Model\Car\Car;
 use App\User;
 use Auth;
@@ -149,4 +150,41 @@ class CarController extends Controller
         return response()->json($users ,200);
     }
 
+    public function addCar(Request $request)
+    {
+        $fetchedData = $request->all();
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        $isCreated=Car::create([
+            'name' => $fetchedData['name'],
+        ])->wasRecentlyCreated;
+
+        
+        if($isCreated)
+            return response()->json(["massge" => "Store Successfully"],200);
+        else
+            return response()->json(["massge" =>" Failed to Store"],400);
+    }
+
+    public function addCarModel(Request $request)
+    {
+        $fetchedData = $request->all();
+        $this->validate($request, [
+            'name' => 'required',
+            'car_id' => 'required'
+        ]);
+
+        $isCreated=Car_Model::create([
+            'name' => $fetchedData['name'],
+            'car_id' => $fetchedData['car_id'],
+        ])->wasRecentlyCreated;
+
+        
+        if($isCreated)
+            return response()->json(["massge" => "Store Successfully"],200);
+        else
+            return response()->json(["massge" =>" Failed to Store"],400);
+    }
 }

@@ -141,7 +141,7 @@ class ServiceController extends Controller
         ]);
         $newsCreated = News::create([
             'title' => $fetchedData['title'],
-            'description' => $fetchedData['title'],
+            'description' => $fetchedData['description'],
             'photo' => $fetchedData['photo']
         ])->wasRecentlyCreated;
 

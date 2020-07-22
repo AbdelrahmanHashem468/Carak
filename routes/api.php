@@ -50,8 +50,6 @@ Route::get('/showSparePart','Car\SparePartController@showSparePart');
 /**
  * @var CarPrice_Routes
  **/
-Route::middleware('auth:api')
-->post('/addCarPrice','Car\CarController@addCarPrice');
 Route::get('/showCarPrice','Car\CarController@showCarPrice');
 
 
@@ -140,4 +138,8 @@ Route::put('/acceptOrRejectMC','Maintenance\MaintenanceController@acceptOrReject
 Route::get('/showReport','Service\ServiceController@showReport');
 
 Route::post('/addNews','Service\ServiceController@addNews');
+
+Route::post('/addCar','Car\CarController@addCar');
+Route::post('/addCarModel','Car\CarController@addCarModel');
+Route::post('/addCarPrice','Car\CarController@addCarPrice');
 });
