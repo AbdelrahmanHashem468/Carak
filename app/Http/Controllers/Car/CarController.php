@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Model\Car\Car_For_Sell;
 use Illuminate\Http\Request;
 use App\Model\Service\Photo;
+use App\Model\Group\Group;
 use App\Model\Car\Car_Price;
 use App\Model\Car\Car_Model;
 use App\Model\Car\Car;
@@ -157,12 +158,18 @@ class CarController extends Controller
             'name' => 'required'
         ]);
 
-        $isCreated=Car::create([
+        $isCreated = Car::create([
             'name' => $fetchedData['name'],
         ])->wasRecentlyCreated;
 
+        $car = Car::where('name',$fetchedData['name'])->get();
         
-        if($isCreated)
+        $groupCreated = Group::create([
+            'car_id' => $car[0]['id'],
+        ])->wasRecentlyCreated;
+
+        
+        if($isCreated && $groupCreated)
             return response()->json(["massge" => "Store Successfully"],200);
         else
             return response()->json(["massge" =>" Failed to Store"],400);
