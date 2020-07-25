@@ -34,7 +34,7 @@ class SparePartController extends Controller
             'price' => $fetchedData['price'],
             'photo' => $photos[0],
             'address' => $fetchedData['address'],
-            'status' => 2, //pending
+            'status' => 1, //pending
             'car_id' => $fetchedData['car_id'],
             'car_model_id' => $fetchedData['car_model_id'],
             'user_id' => Auth::User()->id

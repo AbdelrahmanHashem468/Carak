@@ -37,7 +37,7 @@ class ServiceController extends Controller
             'title'               => $fetchedData['title'],
             'description'         => $fetchedData['description'],
             'photo'               => $photos[0],
-            'status'              => 2,
+            'status'              => 1,
             'user_id'             => Auth::User()->id
         ])->wasRecentlyCreated;
 

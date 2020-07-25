@@ -41,7 +41,7 @@ class CarController extends Controller
             'address'       => $fetchedData['address'],
             'year'          => $fetchedData['year'],
             'car_status'    => $fetchedData['car_status'],
-            'status'        => 2, //pending
+            'status'        => 1, //pending
             'car_id'        => $fetchedData['car_id'],
             'car_model_id'  => $fetchedData['car_model_id'],
             'user_id'       => Auth::User()->id
