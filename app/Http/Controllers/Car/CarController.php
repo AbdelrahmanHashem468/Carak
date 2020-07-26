@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Car;
 
 use App\Http\Controllers\Controller;
 use App\Model\Car\Car_For_Sell;
+use App\Model\Car\Spare_part;
 use Illuminate\Http\Request;
 use App\Model\Service\Photo;
 use App\Model\Group\Group;
@@ -13,6 +14,8 @@ use App\Model\Car\Car;
 use App\User;
 use Auth;
 use DB;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 class CarController extends Controller
 {
     
@@ -193,5 +196,145 @@ class CarController extends Controller
             return response()->json(["massge" => "Store Successfully"],200);
         else
             return response()->json(["massge" =>" Failed to Store"],400);
+    }
+
+    public function sparePartSearch(Request $request)
+    {
+        $fetchedData = $request->all();
+        $result = $this->search($fetchedData,'spare_parts');
+        return response()->json($result);
+    }
+
+    public function usedCarForSellSearch(Request $request)
+    {
+        $fetchedData = $request->all();
+        $result = $this->search1($fetchedData,'car_for_sells',0);
+        return response()->json($result);
+    }
+
+    public function newCarForSellSearch(Request $request)
+    {
+        $fetchedData = $request->all();
+        $result = $this->search1($fetchedData,'car_for_sells',1);
+        return response()->json($result);
+    }
+
+
+    public function search($fetchedData,$table)
+    {
+        $qr = "select * From  ".$table."  where status = 2";
+        $where = '';
+
+        if($fetchedData['input']!= Null)
+        {
+            $where = $where." title LIKE '%".$fetchedData['input']."%'";
+        }
+
+        if($fetchedData['car']!= Null)
+        {
+                if($where!='')
+                    $where = $where.' and ';
+            $where = $where." car_id = ".$fetchedData['car'];
+        }
+
+        if($fetchedData['car_model']!= Null)
+        {
+                if($where!='')
+                    $where = $where.' and ';
+            $where = $where." car_model_id = ".$fetchedData['car_model'];
+        }
+
+        if($fetchedData['price_min']!= Null)
+        {
+                if($where!='')
+                    $where = $where.' and ';
+            $where = $where." price > ".$fetchedData['price_min'];
+        }
+
+        if($fetchedData['price_max']!= Null)
+        {
+                if($where!='')
+                    $where = $where.' and ';
+            $where = $where." price < ".$fetchedData['price_max'];
+        }
+
+        if($where !='')
+            $qr = $qr.' and '.$where;
+
+        if($fetchedData['sortby'] =='ASC ' || $fetchedData['sortby'] =='DESC')
+            $qr = $qr.' order by created_at '.$fetchedData['sortby'];
+
+            $result=DB::select( $qr);
+            $collect = collect($result);
+
+            $page = 1;
+            $size = 10;
+            $paginationData = new LengthAwarePaginator(
+                $collect->forPage($page, $size),
+                $collect->count(), 
+                $size, 
+                $page
+                                );
+
+        return $paginationData;
+    }
+
+    public function search1($fetchedData,$table,$car_status)
+    {
+        $qr = "select * From  ".$table."  where status = 2 and car_status = ".$car_status."";
+        $where = '';
+
+        if($fetchedData['input']!= Null)
+        {
+            $where = $where." title LIKE '%".$fetchedData['input']."%'";
+        }
+
+        if($fetchedData['car']!= Null)
+        {
+                if($where!='')
+                    $where = $where.' and ';
+            $where = $where." car_id = ".$fetchedData['car'];
+        }
+
+        if($fetchedData['car_model']!= Null)
+        {
+                if($where!='')
+                    $where = $where.' and ';
+            $where = $where." car_model_id = ".$fetchedData['car_model'];
+        }
+
+        if($fetchedData['price_min']!= Null)
+        {
+                if($where!='')
+                    $where = $where.' and ';
+            $where = $where." price > ".$fetchedData['price_min'];
+        }
+
+        if($fetchedData['price_max']!= Null)
+        {
+                if($where!='')
+                    $where = $where.' and ';
+            $where = $where." price < ".$fetchedData['price_max'];
+        }
+
+        if($where !='')
+            $qr = $qr.' and '.$where;
+
+        if($fetchedData['sortby'] =='ASC ' || $fetchedData['sortby'] =='DESC')
+            $qr = $qr.' order by created_at '.$fetchedData['sortby'];
+
+        $result=DB::select( $qr);
+        $collect = collect($result);
+
+        $page = 1;
+        $size = 10;
+        $paginationData = new LengthAwarePaginator(
+            $collect->forPage($page, $size),
+            $collect->count(), 
+            $size, 
+            $page
+                            );
+
+        return $paginationData;
     }
 }

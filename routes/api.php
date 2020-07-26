@@ -14,6 +14,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
  **/
 Route::post('/register'     ,'UserController@register'  );
 Route::post('/login'        ,'UserController@login'     );
+Route::post('/adminLogin','UserController@adminLogin');
 Route::post('/uploadimage'  ,'UserController@uploadimge');
 Route::middleware('auth:api')
 ->get('/profile'  ,'UserController@profile');
@@ -21,7 +22,9 @@ Route::middleware('auth:api')
 ->post('/checkPassword'  ,'UserController@checkPassword');
 Route::middleware('auth:api')
 ->post('/editProfile'  ,'UserController@editProfile');
-
+Route::post('/sparePartSearch','Car\CarController@sparePartSearch');
+Route::post('/usedCarForSellSearch','Car\CarController@usedCarForSellSearch');
+Route::post('/newCarForSellSearch','Car\CarController@newCarForSellSearch');
 
 
 /**
@@ -94,7 +97,6 @@ Route::get('/showNotification/{id}','Service\ServiceController@showNotification'
 
 
 
-Route::post('/adminLogin','UserController@adminLogin');
 
 
 /**
