@@ -257,7 +257,7 @@ class CarController extends Controller
             unset($carForSell[$i]['car_model']);
         }
 
-        return response()->json($carForSell,200);
+        return $carForSell;
     }
 
 
