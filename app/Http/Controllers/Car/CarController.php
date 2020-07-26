@@ -305,16 +305,18 @@ class CarController extends Controller
 
         if($fetchedData['price_min']!= Null)
         {
+            $min = (string)$fetchedData['price_min'];
                 if($where!='')
                     $where = $where.' and ';
-            $where = $where." price > ".$fetchedData['price_min']."";
+            $where = $where." price > ".$min;
         }
 
         if($fetchedData['price_max']!= Null)
         {
+            $max = (string)$fetchedData['price_max'];
                 if($where!='')
                     $where = $where.' and ';
-            $where = $where." price < ".$fetchedData['price_max']."";
+            $where = $where." price < ".$max;
         }
 
         if($where !='')
