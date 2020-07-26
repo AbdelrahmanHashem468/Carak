@@ -9,7 +9,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Maintenance_Center::class, function (Faker $faker) {
     $rand = rand(0,2);
-    $rand2 = rand(0,13);
+    $rand2 = rand(0,12);
     return [
         'name' => $faker->name,
         'latitude' => $faker->randomFloat(2, 1, 100 ),

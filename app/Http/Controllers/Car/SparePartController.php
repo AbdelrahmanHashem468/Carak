@@ -130,16 +130,16 @@ class SparePartController extends Controller
         if($fetchedData['car']==0)
             $spareParts= Spare_Part::where('status','2')
             ->where('title', 'LIKE', '%' . $fetchedData['input'] . '%')
-            //->where('price','<',$fetchedData['price_max'])
-           // ->where('price','>',$fetchedData['price_min'])
+            ->where('price','<',$fetchedData['price_max'])
+            ->where('price','>',$fetchedData['price_min'])
             ->orderBy($fetchedData['sortby'],$fetchedData['sortvalue'])->paginate(10);
 
         if($fetchedData['car']!=0 && $fetchedData['car_model']==0)
             $spareParts = Spare_Part::where('status','2')
             ->where('title', 'LIKE', '%' . $fetchedData['input'] . '%')
             ->where('car_id',$fetchedData['car'])
-           // ->where('price','<',$fetchedData['price_max'])
-            //->where('price','>',$fetchedData['price_min'])
+            ->where('price','<',$fetchedData['price_max'])
+            ->where('price','>',$fetchedData['price_min'])
             ->orderBy($fetchedData['sortby'],$fetchedData['sortvalue'])->paginate(10);
 
         if($fetchedData['car']!=0 && $fetchedData['car_model']!=0)
@@ -147,8 +147,8 @@ class SparePartController extends Controller
             ->where('title', 'LIKE', '%' . $fetchedData['input'] . '%')
             ->where('car_id',$fetchedData['car'])
             ->where('car_model_id',$fetchedData['car_model'])
-            //->where('price','<',$fetchedData['price_max'])
-           //->where('price','>',$fetchedData['price_min'])
+            ->where('price','<',$fetchedData['price_max'])
+            ->where('price','>',$fetchedData['price_min'])
             ->orderBy($fetchedData['sortby'],$fetchedData['sortvalue'])->paginate(10);
 
         for($i=0 ;$i<sizeof($spareParts); $i++)

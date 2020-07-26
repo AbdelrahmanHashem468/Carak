@@ -16,7 +16,7 @@ class AdminTableSeeder extends Seeder
             'name' => 'Admin',
             'email' => 'admin@gmail.com',
             'phonenumber' => '01140073150',
-            'photo' => 'https://res.cloudinary.com/cark/image/upload/v1584853653/vs2qb4smgv9ekubgjvmo.jpg',
+            'photo' => 'https://res.cloudinary.com/cark/image/upload/v1595782679/kccphfkzv1poktl9y8m1.jpg',
             'role' => 'admin',
             'email_verified_at' => now(),
             'password' => bcrypt('password'),   //'$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password

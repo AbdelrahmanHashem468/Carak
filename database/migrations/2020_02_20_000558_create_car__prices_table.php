@@ -15,7 +15,7 @@ class CreateCarPricesTable extends Migration
     {
         Schema::create('car_prices', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('price');
+            $table->double('price');
             $table->string('category');
             $table->unsignedBigInteger('car_id');
             $table->foreign('car_id')->references('id')->on('cars');

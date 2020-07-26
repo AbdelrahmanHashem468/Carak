@@ -9,6 +9,6 @@ $factory->define(News::class, function (Faker $faker) {
     return [
         'title' => $faker->name,
         'description' => $faker->text,
-        'photo' => 'https://res.cloudinary.com/cark/image/upload/v1586258373/rdnokj4vf7ir4flrsfml.jpg'
+        'photo' => 'https://res.cloudinary.com/cark/image/upload/v1595782679/kccphfkzv1poktl9y8m1.jpg'
     ];
 });

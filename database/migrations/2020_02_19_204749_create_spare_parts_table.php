@@ -17,7 +17,7 @@ class CreateSparePartsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('description');
-            $table->string('price');
+            $table->double('price');
             $table->string('address');
             $table->string('photo');
             $table->string('rejection_reason')->nullable();

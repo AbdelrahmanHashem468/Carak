@@ -17,7 +17,7 @@ class CreateCarForSellsTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->text('description');
-            $table->string('price');
+            $table->double('price');
             $table->string('address');
             $table->integer('car_status');
             // 0 => used   1 => new

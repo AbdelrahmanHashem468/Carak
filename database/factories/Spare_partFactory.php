@@ -16,7 +16,7 @@ $factory->define(Spare_part::class, function (Faker $faker) {
         'price' => $faker->randomNumber(5),
         'address' => $faker->address,
         'status' =>$rand,
-        'photo' => 'https://res.cloudinary.com/cark/image/upload/v1584853653/vs2qb4smgv9ekubgjvmo.jpg',
+        'photo' => 'https://res.cloudinary.com/cark/image/upload/v1595782679/kccphfkzv1poktl9y8m1.jpg',
         'car_id' => $Instance['car_id'],
         'car_model_id'=> $Instance['id'],
         'user_id'=>User::getInstance(),
