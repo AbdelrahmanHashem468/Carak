@@ -248,15 +248,15 @@ class CarController extends Controller
         {
                 if($where!='')
                     $where = $where.' and ';
-            $where = $where." price > ".$fetchedData['price_min'];
-        }
+                $where = $where." price > '".$fetchedData['price_min']."'";
+                }
 
         if($fetchedData['price_max']!= Null)
         {
                 if($where!='')
                     $where = $where.' and ';
-            $where = $where." price < ".$fetchedData['price_max'];
-        }
+                $where = $where." price < '".$fetchedData['price_max']."'";
+                }
 
         if($where !='')
             $qr = $qr.' and '.$where;
@@ -308,14 +308,14 @@ class CarController extends Controller
             
                 if($where!='')
                     $where = $where.' and ';
-            $where = $where." price > ".strval($fetchedData['price_min']);
+            $where = $where." price > '".$fetchedData['price_min']."'";
         }
 
         if($fetchedData['price_max']!= Null)
         {
                 if($where!='')
                     $where = $where.' and ';
-            $where = $where." price < ".strval($fetchedData['price_max']);
+            $where = $where." price < '".$fetchedData['price_max']."'";
         }
 
         if($where !='')
