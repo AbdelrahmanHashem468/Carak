@@ -277,7 +277,7 @@ class CarController extends Controller
                 $collect->count(), 
                 $size, 
                 $page,
-                ['path' => url('http://127.0.0.1:8000/api/usedCarForSellSearch')]
+                ['path' => url('https://rocky-cliffs-25615.herokuapp.com/api/sparePartSearch')]
                                 );
 
         return $paginationData;
@@ -343,7 +343,7 @@ class CarController extends Controller
                 $collect->count(), 
                 $size,
                 $page,
-                ['path' => url('http://127.0.0.1:8000/api/newCarForSellSearch')]
+                ['path' => url('https://rocky-cliffs-25615.herokuapp.com/api/newCarForSellSearch')]
                                 );
         }
 
@@ -354,7 +354,7 @@ class CarController extends Controller
                 $collect->count(), 
                 $size,
                 $page,
-                ['path' => url('http://127.0.0.1:8000/api/usedCarForSellSearch')]
+                ['path' => url('https://rocky-cliffs-25615.herokuapp.com/api/usedCarForSellSearch')]
                                 );
         }
         return $paginationData;
