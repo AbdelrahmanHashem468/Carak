@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Car;
 
 use App\Http\Controllers\Controller;
 use App\Model\Car\Spare_part;
+use App\Model\Service\Notification;
 use Illuminate\Http\Request;
 use App\Model\Service\Photo;
 use App\Model\Car\Car;
@@ -90,9 +91,33 @@ class SparePartController extends Controller
             'status' => $fetchedData['status']
         ]);
 
-        if($isEdited)
-        return response()->json(["massge" => "Edit Successfully"],200);
+        $sparePart = Spare_Part::find($fetchedData['id']);
 
+        if($isEdited)
+        {
+            if($fetchedData['status']==2)
+            {
+                Notification::create([
+                    'message' => 'Your Spare Part '.$sparePart['title'].' has been approved',
+                    'user_id' => $sparePart['user_id'],
+                    'seen'    =>  0
+                ]);
+            }
+
+            if($fetchedData['status']==0)
+            {
+                Notification::create([
+                    'message' => 
+                    'Your Spare Part '.$sparePart['title'].' has been Rejected because  '.$fetchedData['rejection_reason'].'',
+                    'user_id' => $sparePart['user_id'],
+                    'seen'    =>  0
+                ]);
+                Spare_Part::where('id',$fetchedData['id'])->update([
+                    'rejection_reason' => $fetchedData['rejection_reason']
+                ]);
+            }
+            return response()->json(["massge" => "Edit Successfully"],200);
+        }
         else
             return response()->json(["massge" =>" Failed to Edit"],400);
     }

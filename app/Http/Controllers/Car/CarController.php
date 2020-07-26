@@ -276,7 +276,8 @@ class CarController extends Controller
                 $collect->forPage($page, $size),
                 $collect->count(), 
                 $size, 
-                $page
+                $page,
+                ['path' => url('http://127.0.0.1:8000/api/usedCarForSellSearch')]
                                 );
 
         return $paginationData;
@@ -335,13 +336,27 @@ class CarController extends Controller
 
         $page = 1;
         $size = 10;
-        $paginationData = new LengthAwarePaginator(
-            $collect->forPage($page, $size),
-            $collect->count(), 
-            $size, 
-            $page
-                            );
+        if($car_status==1)
+        {
+            $paginationData = new LengthAwarePaginator(
+                $collect->forPage($page, $size),
+                $collect->count(), 
+                $size,
+                $page,
+                ['path' => url('http://127.0.0.1:8000/api/newCarForSellSearch')]
+                                );
+        }
 
+        if($car_status==0)
+        {
+            $paginationData = new LengthAwarePaginator(
+                $collect->forPage($page, $size),
+                $collect->count(), 
+                $size,
+                $page,
+                ['path' => url('http://127.0.0.1:8000/api/usedCarForSellSearch')]
+                                );
+        }
         return $paginationData;
     }
 }
