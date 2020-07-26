@@ -22,7 +22,7 @@ Route::middleware('auth:api')
 ->post('/checkPassword'  ,'UserController@checkPassword');
 Route::middleware('auth:api')
 ->post('/editProfile'  ,'UserController@editProfile');
-Route::get('/sparePartSearch','Car\CarController@sparePartSearch');
+Route::get('/search','Car\SparePartController@search');
 Route::get('/usedCarForSellSearch','Car\CarController@usedCarForSellSearch');
 Route::get('/newCarForSellSearch','Car\CarController@newCarForSellSearch');
 
