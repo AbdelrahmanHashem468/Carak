@@ -305,6 +305,7 @@ class CarController extends Controller
 
         if($fetchedData['price_min']!= Null)
         {
+            
                 if($where!='')
                     $where = $where.' and ';
             $where = $where." price > ".(string)$fetchedData['price_min'];
@@ -320,8 +321,11 @@ class CarController extends Controller
         if($where !='')
             $qr = $qr.' and '.$where;
 
-        if($fetchedData['sortby'] =='ASC ' || $fetchedData['sortby'] =='DESC')
-            $qr = $qr.' order by created_at '.$fetchedData['sortby'];
+        if($fetchedData['sort_date'] =='ASC ' || $fetchedData['sort_date'] =='DESC')
+            $qr = $qr.' order by created_at '.$fetchedData['sort_date'];
+
+        if($fetchedData['sort_price'] =='ASC ' || $fetchedData['sort_price'] =='DESC')
+            $qr = $qr.' order by price '.$fetchedData['sort_price'];
 
         $result=DB::select( $qr);
         $collect = collect($result);
