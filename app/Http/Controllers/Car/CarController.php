@@ -198,13 +198,70 @@ class CarController extends Controller
             return response()->json(["massge" =>" Failed to Store"],400);
     }
 
-    public function sparePartSearch(Request $request)
+    public function newCarForSellSearch(Request $request)
     {
         $fetchedData = $request->all();
-        $result = $this->search($fetchedData,'spare_parts');
+        $result = $this->search($fetchedData,1);
         return response()->json($result);
     }
 
+    public function usedCarForSellSearch(Request $request)
+    {
+        $fetchedData = $request->all();
+        $result = $this->search($fetchedData,0);
+        return response()->json($result);
+    }
+
+
+    public function search($fetchedData,$car_status)
+    {
+        if($fetchedData['car']==0)
+            $carForSell= Car_For_Sell::where('status','2')
+            ->where('car_status',$car_status)
+            ->where('title', 'LIKE', '%' . $fetchedData['input'] . '%')
+            ->where('price','<',$fetchedData['price_max'])
+            ->where('price','>',$fetchedData['price_min'])
+            ->orderBy($fetchedData['sortby'],$fetchedData['sortvalue'])->paginate(10);
+
+        if($fetchedData['car']!=0 && $fetchedData['car_model']==0)
+            $carForSell = Car_For_Sell::where('status','2')
+            ->where('car_status',$car_status)
+            ->where('title', 'LIKE', '%' . $fetchedData['input'] . '%')
+            ->where('car_id',$fetchedData['car'])
+            ->where('price','<',$fetchedData['price_max'])
+            ->where('price','>',$fetchedData['price_min'])
+            ->orderBy($fetchedData['sortby'],$fetchedData['sortvalue'])->paginate(10);
+
+        if($fetchedData['car']!=0 && $fetchedData['car_model']!=0)
+            $carForSell = Car_For_Sell::where('status','2')
+            ->where('car_status',$car_status)
+            ->where('title', 'LIKE', '%' . $fetchedData['input'] . '%')
+            ->where('car_id',$fetchedData['car'])
+            ->where('car_model_id',$fetchedData['car_model'])
+            ->where('price','<',$fetchedData['price_max'])
+            ->where('price','>',$fetchedData['price_min'])
+            ->orderBy($fetchedData['sortby'],$fetchedData['sortvalue'])->paginate(10);
+
+        for($i=0 ;$i<sizeof($carForSell); $i++)
+        {
+            $carForSell[$i]['created_date'] =$carForSell[$i]['created_at']->format('Y-m-d');
+            $carForSell[$i]['user_name']=$carForSell[$i]->user->name;
+            $carForSell[$i]['user_photo']=$carForSell[$i]->user->photo;
+            $carForSell[$i]['user_phonenumber']=$carForSell[$i]->user->phonenumber;
+            $carForSell[$i]['car_name']=$carForSell[$i]->car->name;
+            $carForSell[$i]['car_model_name']=$carForSell[$i]->car_model->name;
+            $carForSell[$i]['photos'] = Photo::select('name')->where('type',2)
+            ->where('object_id',$carForSell[$i]['id'])->get();
+            unset($carForSell[$i]['user']);
+            unset($carForSell[$i]['car']);
+            unset($carForSell[$i]['car_model']);
+        }
+
+        return response()->json($carForSell,200);
+    }
+
+
+/*
     public function usedCarForSellSearch(Request $request)
     {
         $fetchedData = $request->all();
@@ -359,4 +416,6 @@ class CarController extends Controller
         }
         return $paginationData;
     }
+*/
+
 }

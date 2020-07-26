@@ -122,7 +122,7 @@ class SparePartController extends Controller
             return response()->json(["massge" =>" Failed to Edit"],400);
     }
 
-    public function search(Request $request)
+    public function sparePartSearch(Request $request)
     {
         $fetchedData = $request->all();
 
