@@ -127,7 +127,7 @@ class SparePartController extends Controller
         $fetchedData = $request->all();
 
 
-        if($fetchedData['car']==0)
+        if((int)$fetchedData['car']==0)
             $spareParts= Spare_Part::where('status','2')
             ->where('title', 'LIKE', '%' . $fetchedData['input'] . '%')
             ->where('price','<',$fetchedData['price_max'])
