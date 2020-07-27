@@ -39,7 +39,9 @@ class Maintenance_Center extends Model
 
     public static function getPendingM_Center()
     {
-        $m_Centers = Maintenance_Center::where('status','1')->paginate(10);
+        $m_Centers = Maintenance_Center::where('status','1')
+        ->orderBy('created_at','desc')->paginate(10);
+        ;
         for($i=0;$i<sizeof($m_Centers);$i++)
         {
             $m_Centers[$i]['user_name'] = $m_Centers[$i]->user->name;
