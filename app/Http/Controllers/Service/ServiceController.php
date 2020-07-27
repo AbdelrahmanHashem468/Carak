@@ -162,8 +162,9 @@ class ServiceController extends Controller
         return response()->json($data,200);
     }
 
-    public function showNotification($id)
+    public function showNotification()
     {
+        $id = Auth::User()->id;
         $notifications = Notification::getAllNotifications($id);
         return response()->json($notifications,200);
     }

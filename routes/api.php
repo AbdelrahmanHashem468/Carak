@@ -92,7 +92,8 @@ Route::middleware('auth:api')
 ->post('/addOffer','Service\ServiceController@addOffer');
 Route::middleware('auth:api')
 ->post('/addReport','Service\ServiceController@addReport');
-Route::get('/showNotification/{id}','Service\ServiceController@showNotification');
+Route::middleware('auth:api')
+->get('/showNotification','Service\ServiceController@showNotification');
 
 
 
