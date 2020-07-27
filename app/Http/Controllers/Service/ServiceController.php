@@ -201,8 +201,9 @@ class ServiceController extends Controller
             'photo' => 'required',
         ]);
 
+        $url = User::fileUpload($request);
         $isEdited = Advertise::where('id',1)->update([
-            'photo' => $fetchedData['photo']
+            'photo' => $url
         ]);
 
         if($isEdited)
