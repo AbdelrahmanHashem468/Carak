@@ -147,5 +147,6 @@ Route::post('/addCarModel','Car\CarController@addCarModel');
 Route::post('/addCarPrice','Car\CarController@addCarPrice');
 
 Route::post('/addAdvertise','Service\ServiceController@addAdvertise');
+Route::put('/updateSolar','Service\ServiceController@updateSolar');
 
 });

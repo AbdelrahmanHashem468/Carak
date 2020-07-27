@@ -163,10 +163,13 @@ class ServiceController extends Controller
             'description' => 'required',
             'photo' => 'required',
         ]);
+
+        $url = User::fileUpload($request);
+        
         $newsCreated = News::create([
             'title' => $fetchedData['title'],
             'description' => $fetchedData['description'],
-            'photo' => $fetchedData['photo']
+            'photo' => $url
         ])->wasRecentlyCreated;
 
         if($newsCreated)
@@ -204,6 +207,36 @@ class ServiceController extends Controller
         $url = User::fileUpload($request);
         $isEdited = Advertise::where('id',1)->update([
             'photo' => $url
+        ]);
+
+        if($isEdited)
+        {
+            return response()->json(["massage"=>"Store Successfully"],200);
+        }
+        else
+        {
+            return response()->json(["massage"=>"Failed to Store"],400);
+        }
+    }
+
+    public function updateSolar(Request $request)
+    {
+        $fetchedData = $request->all();
+
+        $this->validate($request,[
+            'oli82price' => 'required',
+            'oli92price' => 'required',
+            'oli95price' => 'required',
+            'solarprice' => 'required',
+            'gasprice'   => 'required',
+        ]);
+
+        $isEdited = Solar_Price::where('id',1)->update([
+            'oli82price' => $fetchedData['oli82price'],
+            'oli92price' => $fetchedData['oli92price'],
+            'oli95price' => $fetchedData['oli95price'],
+            'solarprice' => $fetchedData['solarprice'],
+            'gasprice'   => $fetchedData['gasprice'],
         ]);
 
         if($isEdited)
