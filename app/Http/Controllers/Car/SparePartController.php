@@ -98,7 +98,7 @@ class SparePartController extends Controller
             if($fetchedData['status']==2)
             {
                 Notification::create([
-                    'message' => 'Your Spare Part '.$sparePart['title'].' has been approved',
+                    'message' => ' '.$sparePart['title'].'  لقد تم الموافقه علي اعلانك ',
                     'user_id' => $sparePart['user_id'],
                     'seen'    =>  0
                 ]);
@@ -108,7 +108,7 @@ class SparePartController extends Controller
             {
                 Notification::create([
                     'message' => 
-                    'Your Spare Part '.$sparePart['title'].' has been Rejected because  '.$fetchedData['rejection_reason'].'',
+                    ' بسبب '.$fetchedData['rejection_reason'].' '.$sparePart['title'].'   لقد تم رفض اعلانك ',
                     'user_id' => $sparePart['user_id'],
                     'seen'    =>  0
                 ]);

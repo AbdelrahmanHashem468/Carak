@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Car;
 
 use App\Http\Controllers\Controller;
 use App\Model\Car\Car_For_Sell;
+use App\Model\Service\Notification;
 use App\Model\Car\Spare_part;
 use Illuminate\Http\Request;
 use App\Model\Service\Photo;
@@ -101,9 +102,34 @@ class CarController extends Controller
             'status' => $fetchedData['status']
         ]);
 
-        if($isEdited)
-        return response()->json(["massge" => "Edit Successfully"],200);
+        $carForSell = Car_For_Sell::find($fetchedData['id']);
 
+        if($isEdited)
+        {
+            if($fetchedData['status']==2)
+            {
+                Notification::create([
+                    'message' => ' '.$carForSell['title'].'  لقد تم الموافقه علي اعلانك ',
+                    'user_id' => $carForSell['user_id'],
+                    'seen'    =>  0
+                ]);
+            }
+
+            if($fetchedData['status']==0)
+            {
+                Notification::create([
+                    'message' => 
+                    'بسبب '.$fetchedData['rejection_reason'].' '.$carForSell['title'].'   لقد تم رفض اعلانك ',
+                    'user_id' => $carForSell['user_id'],
+                    'seen'    =>  0
+                ]);
+                Car_For_Sell::where('id',$fetchedData['id'])->update([
+                    'rejection_reason' => $fetchedData['rejection_reason']
+                ]);
+            }
+
+            return response()->json(["massge" => "Edit Successfully"],200);
+        }
         else
             return response()->json(["massge" =>" Failed to Edit"],400);
     }

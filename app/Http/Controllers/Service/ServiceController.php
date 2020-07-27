@@ -78,9 +78,33 @@ class ServiceController extends Controller
             'status' => $fetchedData['status']
         ]);
 
-        if($isEdited)
-            return response()->json(["massge" => "Edit Successfully"],200);
+        $offer = Offer::find($fetchedData['id']);
 
+        if($isEdited)
+        {
+            if($fetchedData['status']==2)
+            {
+                Notification::create([
+                    'message' => ' '.$offer['title'].'  لقد تم الموافقه علي اعلانك ',
+                    'user_id' => $offer['user_id'],
+                    'seen'    =>  0
+                ]);
+            }
+
+            if($fetchedData['status']==0)
+            {
+                Notification::create([
+                    'message' => 
+                    ' بسبب '.$fetchedData['rejection_reason'].' '.$offer['title'].'   لقد تم رفض اعلانك ',
+                    'user_id' => $offer['user_id'],
+                    'seen'    =>  0
+                ]);
+                Offer::where('id',$fetchedData['id'])->update([
+                    'rejection_reason' => $fetchedData['rejection_reason']
+                ]);
+            }
+            return response()->json(["massge" => "Edit Successfully"],200);
+        }
         else
             return response()->json(["massge" =>" Failed to Edit"],400);
     }
