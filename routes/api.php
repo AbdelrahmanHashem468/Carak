@@ -145,4 +145,7 @@ Route::post('/addNews','Service\ServiceController@addNews');
 Route::post('/addCar','Car\CarController@addCar');
 Route::post('/addCarModel','Car\CarController@addCarModel');
 Route::post('/addCarPrice','Car\CarController@addCarPrice');
+
+Route::put('/addAdvertise','Service\ServiceController@addAdvertise');
+
 });

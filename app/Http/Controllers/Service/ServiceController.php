@@ -192,4 +192,26 @@ class ServiceController extends Controller
         $notifications = Notification::getAllNotifications($id);
         return response()->json($notifications,200);
     }
+
+    public function addAdvertise(Request $request)
+    {
+        $fetchedData = $request->all();
+
+        $this->validate($request,[
+            'photo' => 'required',
+        ]);
+
+        $isEdited = Advertise::where('id',1)->update([
+            'photo' => $fetchedData['photo']
+        ]);
+
+        if($isEdited)
+        {
+            return response()->json(["massage"=>"Store Successfully"],200);
+        }
+        else
+        {
+            return response()->json(["massage"=>"Failed to Store"],400);
+        }
+    }
 }
