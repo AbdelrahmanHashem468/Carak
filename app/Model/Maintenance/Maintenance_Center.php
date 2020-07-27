@@ -24,7 +24,7 @@ class Maintenance_Center extends Model
         AS distance FROM maintenance_centers GROUP BY id 
          HAVING ( 6367 * acos( cos( radians('.$latitude.') ) * 
          cos( radians( latitude ) ) * cos( radians( longitude ) - radians('.$longitude.') ) 
-         + sin( radians('.$latitude.') ) * sin( radians( latitude ) ) ) ) < 25');
+         + sin( radians('.$latitude.') ) * sin( radians( latitude ) ) ) ) < 25 and status = 2');
 
         for($i=0 ;$i<sizeof($m_Centers); $i++)        
         {
