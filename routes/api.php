@@ -95,6 +95,7 @@ Route::middleware('auth:api')
 Route::middleware('auth:api')
 ->get('/showNotification','Service\ServiceController@showNotification');
 
+Route::get('/delete','Car\CarController@delete');
 
 
 

@@ -444,4 +444,12 @@ class CarController extends Controller
     }
 */
 
+
+
+    public function delete()
+    {
+        $result=Car_For_Sell::where('id',7)->delete();
+
+        return response()->json($result,200);
+    }
 }
